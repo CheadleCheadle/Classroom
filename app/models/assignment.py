@@ -1,4 +1,5 @@
 from app.models import db, environment, add_prefix_for_prod, SCHEMA
+from datetime import datetime
 
 class Assignment(db.Model):
     __tablename__ = 'assignments'
@@ -9,13 +10,13 @@ class Assignment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("classes.id"), nullable=False))
+    class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("classes.id")))
     instruction = db.Column(db.Text, nullable=False)
     points = db.Column(db.Integer, nullable=True)
     due_date = db.Column(db.Date, nullable=True)
     topic = db.Column(db.String(100), nullable=True)
-    created_at = db.Column(db.Date, nullable=False)
-    updated_at = db.Column(db.Date, nullable=False)
+    created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    updated_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     # _class due to class being a reserved word
     _class = db.relationship("Class", back_populates="assignments")
 
@@ -41,7 +42,7 @@ class Assignment(db.Model):
     @property
     def points(self):
         return self.points
-    
+
     @points.setter
     def points(self, points):
         self.points = points
@@ -100,4 +101,4 @@ class Assignment(db.Model):
             "points": self.points,
             "due_date": self.due_date,
             "topic": self.topic
-        }       }
+        }

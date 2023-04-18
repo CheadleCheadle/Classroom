@@ -1,4 +1,6 @@
 from app.models import db, environment, add_prefix_for_prod, SCHEMA
+from sqlalchemy import Enum
+import enum
 
 class UserClass(db.Model):
     __tablename__ = "user_class"
@@ -11,9 +13,9 @@ class UserClass(db.Model):
         TEACHER = "Teacher"
         STUDENT = "Student"
 
-    
-    class_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("classes.id")))
-    user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")))
+
+    class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("classes.id")), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True)
     status = db.Column(db.Enum(UserType), nullable=False)
 
     @property

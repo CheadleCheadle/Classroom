@@ -1,5 +1,5 @@
 from app.models import db, environment, add_prefix_for_prod, SCHEMA
-
+from datetime import datetime
 class Class(db.Model):
     __tablename__ = 'classes'
 
@@ -13,8 +13,8 @@ class Class(db.Model):
     subject = db.Column(db.String(100), nullable=True)
     room = db.Column(db.String(100), nullable=True)
     image = db.Column(db.String(100), nullable=True)
-    created_at = db.Column(db.Date, nullable=False)
-    updated_at = db.Column(db.Date, nullable=False)
+    created_at = db.Column(db.Date, nullable=True, default=datetime.utcnow)
+    updated_at = db.Column(db.Date, nullable=True, default=datetime.utcnow)
 
     assignments = db.relationship("Assignment",
         back_populates="_class", cascade="all, delete-orphan")
