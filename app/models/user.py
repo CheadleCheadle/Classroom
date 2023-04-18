@@ -13,6 +13,13 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name= db.Column(db.String(100), nullable=False)
+    pfp = db.Column(db.String, nullable=True)
+
+
+    classes = db.relationship("Class", secondary=UserClass.__table__, backref="users")
+    assignments = db.relationship("Assignment", secondary=UserAssignment.__table__, backref="students")
 
     @property
     def password(self):
