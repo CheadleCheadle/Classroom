@@ -13,10 +13,6 @@ from app.models.db import db, environment, SCHEMA
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
 
-@seed_commands.command("user")
-def seed_user():
-    seed_classes()
-
 # Creates the `flask seed all` command
 @seed_commands.command('all')
 def seed():
