@@ -3,7 +3,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
 class UserAssignment(db.Model):
-    _tablename__ = "user_assignments"
+    __tablename__ = "user_assignments"
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
