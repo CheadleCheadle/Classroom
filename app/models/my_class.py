@@ -12,7 +12,7 @@ class Class(db.Model):
     section = db.Column(db.String(100), nullable=True)
     subject = db.Column(db.String(100), nullable=True)
     room = db.Column(db.String(100), nullable=True)
-    image = db.Column(db.String(100), nullable=True)
+    image = db.Column(db.String, nullable=True)
     created_at = db.Column(db.Date, nullable=True, default=datetime.utcnow)
     updated_at = db.Column(db.Date, nullable=True, default=datetime.utcnow)
 
