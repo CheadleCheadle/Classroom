@@ -4,7 +4,6 @@ import session from './session';
 import studentClasses from './classStudent';
 import teacherClasses from './classTeacher';
 
-
 const rootReducer = combineReducers({
   session,
   studentClasses,

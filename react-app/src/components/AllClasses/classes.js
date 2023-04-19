@@ -33,7 +33,7 @@ export default function Classes() {
 
 
 
-function useClasses() {
+export function useClasses() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
     const teacherClasses = Object.values(useSelector(state => state.teacherClasses.classesTaught));

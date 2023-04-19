@@ -28,7 +28,7 @@ export const getClassesTeacherThunk = () =>  async dispatch => {
 
 
 
-const initialState = {classesTaught: {}, singleClassId: null};
+const initialState = { classesTaught: {}, singleClassId: null };
 
 
 const teacherClassReducer = (state = initialState, action)  => {

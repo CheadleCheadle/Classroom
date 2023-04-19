@@ -28,3 +28,11 @@ def get_joined_classes():
 
     student_classes = [joined_class.to_dict() for joined_class in classes]
     return student_classes
+
+@class_routes.route('/<int:classId>')
+@login_required
+def get_class_by_id(classId):
+    """Query for single class by id"""
+    queried_class = Class.query.get(classId)
+    print("1111111111111111111111",queried_class)
+    return queried_class.to_dict()
