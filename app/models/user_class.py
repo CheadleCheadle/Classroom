@@ -6,8 +6,8 @@ class UserType(enum.Enum):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-        TEACHER = "Teacher"
-        STUDENT = "Student"
+    TEACHER = "Teacher"
+    STUDENT = "Student"
 
 class UserClass(db.Model):
     __tablename__ = "user_class"
