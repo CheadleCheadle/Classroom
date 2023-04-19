@@ -20,58 +20,58 @@ class Class(db.Model):
         back_populates="_class", cascade="all, delete-orphan")
 
 
-    @property
-    def description(self):
-        return self.description
+    # @property
+    # def description(self):
+    #     return self.description
 
-    @description.setter
-    def description(self, description):
-        self.description = description
-
-
-    @property
-    def name(self):
-        return self.name
-
-    @name.setter
-    def name(self, name):
-        self.name = name
+    # @description.setter
+    # def description(self, new_description):
+    #     self.description = new_description
 
 
-    @property
-    def section(self):
-        return self.section
+    # @property
+    # def name(self):
+    #     return self.name
 
-    @section.setter
-    def section(self, section):
-        self.section = section
-
-
-    @property
-    def subject(self):
-        return self.subject
-
-    @subject.setter
-    def subject(self, subject):
-        self.subject = subject
+    # @name.setter
+    # def name(self, name):
+    #     self.name = name
 
 
-    @property
-    def room(self):
-        return self.room
+    # @property
+    # def section(self):
+    #     return self.section
 
-    @room.setter
-    def room(self, room):
-        self.room = room
+    # @section.setter
+    # def section(self, section):
+    #     self.section = section
 
 
-    @property
-    def image(self):
-        return self.image
+    # @property
+    # def subject(self):
+    #     return self.subject
 
-    @image.setter
-    def image(self, image):
-        self.image = image
+    # @subject.setter
+    # def subject(self, subject):
+    #     self.subject = subject
+
+
+    # @property
+    # def room(self):
+    #     return self.room
+
+    # @room.setter
+    # def room(self, room):
+    #     self.room = room
+
+
+    # @property
+    # def image(self):
+    #     return self.image
+
+    # @image.setter
+    # def image(self, image):
+    #     self.image = image
 
 
     def to_dict(self):
@@ -85,7 +85,7 @@ class Class(db.Model):
         "image": self.image,
         "created_at": self.created_at,
         "updated_at": self.updated_at,
-        "assignments": self.assignments
+        "assignments": [ assignment.to_safe_dict() for assignment in self.assignments]
         }
 
     def to_safe_dict(self):
@@ -100,5 +100,3 @@ class Class(db.Model):
         "created_at": self.created_at,
         "updated_at": self.updated_at,
         }
-
-

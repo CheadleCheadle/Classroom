@@ -1,4 +1,4 @@
-from app.models import assignment, db ,Assignment , environment, SCHEMA
+from app.models import db ,Assignment , environment, SCHEMA
 from datetime import datetime
 
 def seed_assignments():
@@ -34,6 +34,3 @@ def undo_assignments():
         db.session.execute("DELETE FROM assignments")
 
     db.session.commit()
-
-
-

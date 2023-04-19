@@ -14,21 +14,21 @@ class UserAssignment(db.Model):
     created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.Date, nullable=False, default=datetime.utcnow )
 
-    @property
-    def grade(self):
-         return self.grade
+    # @property
+    # def grade(self):
+    #      return self.grade
 
-    @grade.setter
-    def grade(self, grade):
-        self.grade = grade
+    # @grade.setter
+    # def grade(self, grade):
+    #     self.grade = grade
 
-    @property
-    def updated_at(self):
-        return self.updated_at
+    # @property
+    # def updated_at(self):
+    #     return self.updated_at
 
-    @updated_at.setter
-    def updated_at(self, updated_at):
-        self.updated_at = updated_at
+    # @updated_at.setter
+    # def updated_at(self, updated_at):
+    #     self.updated_at = updated_at
 
     def to_dict(self):
         return {

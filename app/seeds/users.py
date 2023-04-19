@@ -6,7 +6,7 @@ from sqlalchemy.sql import text
 def seed_users():
     demo = User(
             username='Demo', email='demo@aa.io', password='password', first_name="Demo",
-            last_name=="Lition",
+            last_name="Lition",
             pfp="https://w7.pngwing.com/pngs/895/199/png-transparent-spider-man-heroes-download-with-transparent-background-free-thumbnail.png")
     marnie = User(
         username='marnie', email='marnie@aa.io', password='password', first_name="Marnie",
@@ -31,6 +31,6 @@ def undo_users():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM users"))
-        
+        db.session.execute("DELETE FROM users")
+
     db.session.commit()
