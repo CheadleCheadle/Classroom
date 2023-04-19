@@ -7,7 +7,6 @@ class Class(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.Text, nullable=True)
     name = db.Column(db.String(100), nullable=False)
     section = db.Column(db.String(100), nullable=True)
     subject = db.Column(db.String(100), nullable=True)
@@ -18,7 +17,7 @@ class Class(db.Model):
 
     assignments = db.relationship("Assignment",
         back_populates="_class", cascade="all, delete-orphan")
-
+    announcements = db.relationship("Announcement", back_populates="class_", cascade="all, delete-orphan")
 
     # @property
     # def description(self):
@@ -77,7 +76,6 @@ class Class(db.Model):
     def to_dict(self):
         return {
         "id": self.id,
-        "description": self.description,
         "name": self.name,
         "section": self.section,
         "subject": self.subject,
@@ -91,7 +89,6 @@ class Class(db.Model):
     def to_safe_dict(self):
         return {
         "id": self.id,
-        "description": self.description,
         "name": self.name,
         "section": self.section,
         "subject": self.subject,

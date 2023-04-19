@@ -4,7 +4,7 @@ from .user_class import seed_user_class, undo_user_class
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .assignment import seed_assignments, undo_assignments
-
+from .announcement import seed_announcements, undo_announcements
 
 
 from app.models.db import db, environment, SCHEMA
@@ -23,9 +23,9 @@ def seed():
         # Make sure to add all your other model's undo functions below
 
 
-
         undo_grades()
         undo_assignments()
+        undo_announcements()
         undo_user_class()
         undo_classes()
         undo_users()
@@ -33,6 +33,7 @@ def seed():
     seed_users()
     seed_classes()
     seed_user_class()
+    seed_announcements()
     seed_assignments()
     seed_grades()
     # Add other seed functions here
@@ -43,7 +44,8 @@ def seed():
 def undo():
     undo_grades()
     undo_assignments()
-    # undo_user_class()
+    undo_user_class()
+    undo_announcements()
     undo_classes()
     undo_users()
 

@@ -4,12 +4,20 @@ import { getClassesTeacherThunk } from "../../store/classTeacher.js"
 import { getClassesStudentThunk } from "../../store/classStudent.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min.js";
+import { setClassId } from "../../store/classTeacher.js"
 export default function Classes() {
-    const [isLoaded, classes] = useClasses()
+    const history = useHistory()
+    const dispatch = useDispatch();
+    const [isLoaded, classes] = useClasses(true)
+    const handleClick = (class_) => {
+        dispatch(setClassId(class_.id))
+        history.push(`/class/${class_.id}`);
+    }
     return isLoaded && (
         <div className="cls-cont">
             {classes.map((class_) => (
-                <div className="cls-individual">
+                <div onClick={() => handleClick(class_)} key={class_.id} className="cls-individual">
                     <div style={{backgroundImage: `url("${class_.image}")`}}className="cls-banner-cont">
                         <div className="cls-info">
                             <div className="cls-name-section">
@@ -33,19 +41,22 @@ export default function Classes() {
 
 
 
-export function useClasses() {
+export function useClasses(flag) {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
-    const teacherClasses = Object.values(useSelector(state => state.teacherClasses.classesTaught));
-    const studentClasses = Object.values(useSelector(state => state.studentClasses.classesStudent))
+    const teacherClasses = Object.values(useSelector(state => state.teacher.classes));
+    const studentClasses = Object.values(useSelector(state => state.student.classes))
     const classes = [...teacherClasses, ...studentClasses];
 
     useEffect(() => {
+        if (flag) {
         dispatch(getClassesTeacherThunk())
+        dispatch(setClassId(null));
         dispatch(getClassesStudentThunk())
         .then(() => {
         setIsLoaded(true);
         })
+    }
     }, [dispatch])
 
     return [isLoaded, classes];

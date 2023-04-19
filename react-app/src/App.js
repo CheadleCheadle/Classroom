@@ -13,7 +13,7 @@ function App() {
   const user = GetUser();
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  useClasses()
+  useClasses(true)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);

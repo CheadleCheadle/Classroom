@@ -30,7 +30,7 @@ export const getClassesStudentThunk = () =>  async dispatch => {
 
 
 
-const initialState = {classesStudent: {}};
+const initialState = {classes: {}};
 
 function studentClassReducer(state = initialState, action) {
 
@@ -38,7 +38,7 @@ function studentClassReducer(state = initialState, action) {
 
     switch(action.type) {
         case STUDENT_CLASSES: {
-            return {...state, classesStudent: {...action.classes}
+            return {...state, classes: {...action.classes}
             }
         }
         default: {
