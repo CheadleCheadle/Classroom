@@ -5,3 +5,30 @@
 .hidden {
   display: none;
 }
+
+.home-icon {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer
+}
+
+#classroom {
+  position: relative;
+  color: #5f6368;
+  font-family: "Product Sans", Arial, Helvetica, sans-serif;
+  padding-left: .25rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-cont {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.38125rem;
+  border-bottom: 0.0625rem solid #e0e0e0;
+}
