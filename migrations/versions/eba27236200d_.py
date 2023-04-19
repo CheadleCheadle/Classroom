@@ -79,7 +79,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE user_class SET SCHEMA {SCHEMA};")
 
-    op.create_table('user_assignment',
+    op.create_table('user_assignments',
     sa.Column('assignment_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('grade', sa.Numeric(), nullable=True),
