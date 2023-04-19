@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('section', sa.String(length=100), nullable=True),
     sa.Column('subject', sa.String(length=100), nullable=True),
     sa.Column('room', sa.String(length=100), nullable=True),
-    sa.Column('image', sa.String(length=100), nullable=True),
+    sa.Column('image', sa.String(), nullable=True),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('updated_at', sa.Date(), nullable=True),
     sa.PrimaryKeyConstraint('id')
