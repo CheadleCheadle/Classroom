@@ -7,11 +7,13 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllClasses from "./components/AllClasses/";
 import GetUser from "./components/utils/getUser";
-
+import ClassPage from "./components/Class";
+import { useClasses } from "./components/AllClasses/classes";
 function App() {
   const user = GetUser();
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  useClasses(true)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -21,7 +23,6 @@ function App() {
       {!!user && <Navigation isLoaded={isLoaded} />}
       {isLoaded && (
         <Switch>
-
           <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -32,6 +33,10 @@ function App() {
 
           {!!user && <Route path="/classes">
             <AllClasses />
+          </Route>
+          }
+          {!!user && <Route path="/class/:classId">
+            <ClassPage />
           </Route>
           }
             {/* <Redirect to="/login"></Redirect> */}

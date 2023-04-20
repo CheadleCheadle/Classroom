@@ -54,7 +54,8 @@
     width: 18.75rem;
     height: 18.375rem;
     border-radius: 5px;
-    border-bottom: 0.0625rem solid #dadce0
+    border-bottom: 0.0625rem solid #dadce0;
+    cursor: pointer;
 }
 
 .cls-cont {

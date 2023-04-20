@@ -5,9 +5,10 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import OpenModalButton from '../OpenModalButton';
 import NewClassButton from './NewClassButton';
-function Navigation({ isLoaded }){
+function Navigation({isLoaded}){
 	const sessionUser = useSelector(state => state.session.user);
-
+	const singleClassId = useSelector(state => state.teacher.singleClassId);
+	console.log("isloaded", isLoaded);
 	return (
 		<div className="nav-cont">
 			<div className="nav-first">
@@ -16,12 +17,12 @@ function Navigation({ isLoaded }){
 			<span id="classroom">Classroom</span>
 			</div>
 			</div>
-			{isLoaded && (
+			{isLoaded && !singleClassId ? (
 				<div className="nav-second">
 			<NewClassButton />
 			<ProfileButton user={sessionUser} />
 				</div>
-			)}
+			) : null}
 		</div>
 	);
 }
