@@ -1,0 +1,70 @@
+#assignment-font-icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: rgb(232,113,10);
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.assignment-info {
+    gap: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.assignment-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid #dadce0;
+    cursor: pointer;
+    color: rgba(0,0,0,.87);
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    max-width: 100%;
+    height: 3.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-right: .5rem;
+    padding-left: 1.5rem;
+}
+
+.assignment-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.assignment-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 1rem;
+
+}
+
+.assignment-details {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: .01785714em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: #3c4043;
+}
+
+#assignment-post-time {
+    letter-spacing: .025em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1rem;
+    color: #5f6368;
+}

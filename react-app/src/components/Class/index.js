@@ -5,10 +5,12 @@ import Banner from "./banner";
 import NewAnnouncement from "./NewAnnouncement";
 import UpcomingWork from "./ClassCode&Upcoming/upcoming";
 import "./main.css"
+import AssignmentStream from "./ClassStream/assignmentStream";
 export default function ClassPage() {
 
     const { classId } = useParams()
     const class_ = useClassDetails(classId);
+    console.log("assignments:", class_.assignments);
 
     return (
         <div className="cls-details-cont">
@@ -19,6 +21,7 @@ export default function ClassPage() {
                 <UpcomingWork/>
             <div className="announcements-cont">
             <NewAnnouncement/>
+            <AssignmentStream assignments={class_.assignments}/>
             </div>
         </div>
         </div>

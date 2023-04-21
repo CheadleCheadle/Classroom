@@ -9,6 +9,7 @@ class Assignment(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
+    # created_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     title = db.Column(db.String(100), nullable=False)
     class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("classes.id")))
     instructions = db.Column(db.Text, nullable=False)
@@ -19,7 +20,7 @@ class Assignment(db.Model):
     updated_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     # _class due to class being a reserved word
     _class = db.relationship("Class", back_populates="assignments")
-
+    # creator = db.relationship('User', back_populates="created_assignments")
 
     # @property
     # def title(self):
@@ -91,7 +92,9 @@ class Assignment(db.Model):
             "instructions": self.instructions,
             "points": self.points,
             "due_date": self.due_date,
-            "topic": self.topic
+            "topic": self.topic,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
             }
 
     def to_safe_dict(self):
@@ -100,5 +103,8 @@ class Assignment(db.Model):
             "instructions": self.instructions,
             "points": self.points,
             "due_date": self.due_date,
-            "topic": self.topic
+            "topic": self.topic,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "class_name": self._class.name
         }

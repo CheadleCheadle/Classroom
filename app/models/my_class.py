@@ -1,5 +1,6 @@
-from app.models import db, environment, add_prefix_for_prod, SCHEMA
+from app.models import db, environment, add_prefix_for_prod, SCHEMA, UserClass, UserType, User
 from datetime import datetime
+from sqlalchemy.orm import Session
 class Class(db.Model):
     __tablename__ = 'classes'
 
@@ -83,7 +84,8 @@ class Class(db.Model):
         "image": self.image,
         "created_at": self.created_at,
         "updated_at": self.updated_at,
-        "assignments": [ assignment.to_safe_dict() for assignment in self.assignments]
+        "assignments": [ assignment.to_safe_dict() for assignment in self.assignments],
+        "users": [user.to_dict() for user in self.users]
         }
 
     def to_safe_dict(self):

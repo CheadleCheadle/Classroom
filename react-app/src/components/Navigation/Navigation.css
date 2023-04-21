@@ -32,3 +32,13 @@
   font-size: 1.38125rem;
   border-bottom: 0.0625rem solid #e0e0e0;
 }
+
+.cls-nav {
+    display: flex;
+    gap: 1em;
+}
+
+#navlnk {
+    color: rgb(194,100,1);
+    fill: rgb(194,100,1);
+}
