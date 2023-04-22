@@ -80,3 +80,35 @@ def new_class():
         db.session.commit()
         return new_class.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+@class_routes.route('/<int:classId>/edit', methods=["PUT"])
+@login_required
+def edit_class(classId):
+    """Edits a class"""
+    form = ClassForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        edit_class = Class.query.get(classId)
+        edit_class.name = form.data["name"]
+        edit_class.section = form.data["section"]
+        edit_class.subject = form.data["subject"]
+        edit_class.room = form.data["room"]
+
+        db.session.commit()
+        return edit_class.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}
+
+
+
+
+
+@class_routes.route('/<int:classId>/teacher')
+@login_required
+def get_teachers(classId):
+    """May need to modify this to find all teachers for a class"""
+    currentUserId = current_user.id
+    teacher = db.session.query(User).join(UserClass).filter(
+        UserClass.class_id == classId,
+        UserClass.status == UserType.TEACHER
+    ).first()
+    print("==========", classId, teacher.to_safe_dict())
+    return teacher.to_dict()

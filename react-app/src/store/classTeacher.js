@@ -3,6 +3,9 @@ import normalize from "../components/utils/normalize.js"
 const TEACHER_CLASSES = "/classes/teach"
 const NEW_TEACHER_CLASS = "classes/teacher/new";
 const SET_CLASS_ID = "classes/SET_CLASS";
+const EDIT_CLASS = "class/edit";
+const SET_CLASS_IS_LOADED = "class/isLoaded";
+
 
 const getClassesActionTeacher = (classes) => {
     return {
@@ -22,6 +25,20 @@ export const setClassId = (classId) => {
     return {
         type: SET_CLASS_ID,
         classId
+    }
+}
+
+export const editClass = (class_) => {
+    return {
+        type: EDIT_CLASS,
+        class_
+    }
+}
+
+export const setClassIsLoaded = (bool) => {
+    return {
+        type: SET_CLASS_IS_LOADED,
+        bool
     }
 }
 
@@ -60,9 +77,26 @@ export const newTeacherClassThunk = (class_) => async dispatch => {
 
 }
 
+export const editTeacherClassThunk = (class_) => async dispatch => {
+    const response = await fetch(`/api/classes/${class_.id}/edit`, {
+        method: "PUT",
+        headers: {"Content-Type": "Application/json"},
+        body: JSON.stringify(class_)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return
+        }
+        dispatch(editClass(data));
+        return data;
+    }
+}
 
 
-const initialState = { classes: {}, singleClassId: null };
+
+const initialState = { classes: {}, singleClassId: null, classIsLoaded: false };
 
 
 const teacherClassReducer = (state = initialState, action)  => {
@@ -85,6 +119,18 @@ const teacherClassReducer = (state = initialState, action)  => {
                 ...state,
                 classes: {...state.classes},
                 singleClassId: action.classId
+            }
+        }
+        case EDIT_CLASS: {
+            newState = {...state};
+            newState.classes = {...state.classes};
+            newState.classes[action.class_.id] = action.class_
+            return newState;
+        }
+        case SET_CLASS_IS_LOADED: {
+            return {
+                ...state,
+                classIsLoaded: action.bool
             }
         }
         default:

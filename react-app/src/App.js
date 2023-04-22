@@ -9,6 +9,8 @@ import AllClasses from "./components/AllClasses/";
 import GetUser from "./components/utils/getUser";
 import ClassPage from "./components/Class";
 import { useClasses } from "./components/AllClasses/classes";
+import ClassOptions from "./components/AllClasses/classOptions";
+import ClassWork from "./components/Class/Classwork";
 function App() {
   const user = GetUser();
   const dispatch = useDispatch();
@@ -35,11 +37,15 @@ function App() {
             <AllClasses />
           </Route>
           }
-          {!!user && <Route path="/class/:classId">
+          {!!user && <Route exact path="/class/:classId">
             <ClassPage />
           </Route>
           }
+          {!!user && <Route exact path="/class/:classId/classwork">
+            <ClassWork/>
+            </Route>}
             {/* <Redirect to="/login"></Redirect> */}
+
         </Switch>
       )}
     </>

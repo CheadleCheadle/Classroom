@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { newTeacherClassThunk } from "../../store/classTeacher";
+import { editTeacherClassThunk, newTeacherClassThunk } from "../../store/classTeacher";
 
-export default function NewClassModal() {
+export default function NewClassModal({edit, class_}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState("");
@@ -13,20 +13,39 @@ export default function NewClassModal() {
     const [room, setRoom] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
 		e.preventDefault();
-        const newClass = {name, section, subject, room};
+            let newClass = {name, section, subject, room};
+
+        if (edit) {
+            newClass.id = class_.id
+            console.log("Im being updated", newClass);
+            const data = dispatch(editTeacherClassThunk(newClass));
+            if (data) {
+            setErrors(data)
+        }
+        } else {
         console.log("the new class", newClass);
-        const data = await dispatch(newTeacherClassThunk(newClass));
-        console.log("DATA", data);
+        const data = dispatch(newTeacherClassThunk(newClass));
+
         if (data) {
             setErrors(data)
         }
+        }
         history.replace(`/classes`)
     }
+
+    useEffect(() => {
+        if (edit) {
+            setName(class_.name);
+            setSection(class_.section);
+            setSubject(class_.subject);
+            setRoom(class_.room);
+        }
+    }, [])
     return (
         <>
-        <h2>Create class</h2>
+        {edit ? <h2>Update class</h2> : <h2>Create class</h2>}
         <form>
             <input
              type="text"

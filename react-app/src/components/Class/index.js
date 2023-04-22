@@ -10,7 +10,6 @@ export default function ClassPage() {
 
     const { classId } = useParams()
     const class_ = useClassDetails(classId);
-    console.log("assignments:", class_.assignments);
 
     return (
         <div className="cls-details-cont">
@@ -21,7 +20,7 @@ export default function ClassPage() {
                 <UpcomingWork/>
             <div className="announcements-cont">
             <NewAnnouncement/>
-            <AssignmentStream assignments={class_.assignments}/>
+            <AssignmentStream assignments={class_.assignments} classId={classId}/>
             </div>
         </div>
         </div>
@@ -32,7 +31,7 @@ export default function ClassPage() {
 
 
 
-function useClassDetails(id) {
+export function useClassDetails(id) {
     id = parseInt(id);
     const class_ = useSelector(state => state.student.classes[id]);
     const class__ = useSelector(state => state.teacher.classes[id]);

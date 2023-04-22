@@ -1,21 +1,22 @@
 import { NavLink } from "react-router-dom"
 import "./Navigation.css";
+import ClassOptions from "../AllClasses/classOptions";
+// import { useSelector } from "react-redux";
 export default function ClassNavigation() {
-
+  // const classId = useSelector(state => state.teacher.singleClassId);
     return (
         <>
         <NavLink
-          id="navlnk"
-          to="/"
-          className={({ isActive, isPending}) =>
-            isPending ? "pending" : "isActive" ? "active" : ""
+          to={'/class/1'}
+          className={({ isActive}) =>
+             isActive ? "active" : "pending"
           }
         >
         Stream
         </NavLink>
 
         <NavLink
-          to="/"
+          to={'/class/1/classwork'}
           className={({ isActive, isPending}) =>
             isPending ? "pending" : "isActive" ? "active" : ""
           }

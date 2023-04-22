@@ -74,8 +74,6 @@ class Assignment(db.Model):
     # @created_at.setter
     # def created_at(self, created_at):
     #     self.created_at = created_at
-
-
     # @property
     # def updated_at(self):
     #     return self.updated_at
@@ -95,6 +93,7 @@ class Assignment(db.Model):
             "topic": self.topic,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "title": self.title
             }
 
     def to_safe_dict(self):
@@ -106,5 +105,6 @@ class Assignment(db.Model):
             "topic": self.topic,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "class_name": self._class.name
+            "class_name": self._class.name,
+            "title": self.title
         }
