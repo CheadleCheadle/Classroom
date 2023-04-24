@@ -2,10 +2,12 @@ import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./main.css";
 import { useEffect } from "react";
 import AssignmentOptions from "./assignmentOptions";
 export default function AssignmentStream({ assignments, classId}) {
+    const history = useHistory();
         if (Object.values(assignments).length) {
         assignments = Object.values(assignments);
         } else {
@@ -13,13 +15,15 @@ export default function AssignmentStream({ assignments, classId}) {
         }
         const dtFormat = new Intl.DateTimeFormat('en-US');
         const [isLoading, teacher] = useTeacher(classId);
-        console.log("Here is the teach", assignments);
-
+        const handleClick = (assignmentId) => {
+            console.log("here is the assignment Id", assignmentId);
+            history.push(`/classes/${classId}/assignments/${assignmentId}`);
+        }
 
     return (
 
         assignments.map((assignment) => (
-        <div key={assignment.id}  className="assignment-cont">
+        <div onClick={() => handleClick(assignment.id)} key={assignment.id}  className="assignment-cont">
             <div className="assignment-info">
                 <div id="assignment-font-icon">
                 <FontAwesomeIcon icon={faClipboardList} />
@@ -44,7 +48,7 @@ export default function AssignmentStream({ assignments, classId}) {
 
 }
 
-function useTeacher(classId) {
+export function useTeacher(classId) {
     const [isLoading, setIsLoading] = useState(false);
     const [teacher, setTeacher] = useState({});
     useEffect(() => {

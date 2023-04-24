@@ -8,7 +8,7 @@ export default function ClassNavigation() {
     return (
         <>
         <NavLink
-          to={'/class/1'}
+          to={`/class/${classId}`}
           className={({ isActive}) =>
              isActive ? "active" : "pending"
           }
