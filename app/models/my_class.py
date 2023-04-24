@@ -20,6 +20,12 @@ class Class(db.Model):
         back_populates="_class", cascade="all, delete-orphan")
     announcements = db.relationship("Announcement", back_populates="class_", cascade="all, delete-orphan")
 
+
+    def normalize(self, data):
+        normalized = {}
+        for key, value in enumerate(data):
+            normalized[key] = value
+        return normalized
     # @property
     # def description(self):
     #     return self.description
@@ -84,7 +90,7 @@ class Class(db.Model):
         "image": self.image,
         "created_at": self.created_at,
         "updated_at": self.updated_at,
-        "assignments": [ assignment.to_safe_dict() for assignment in self.assignments],
+        "assignments": self.normalize([ assignment.to_safe_dict() for assignment in self.assignments]),
         "users": [user.to_dict() for user in self.users]
         }
 

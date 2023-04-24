@@ -1,5 +1,7 @@
-import { startCase } from "lodash";
 import normalize from "../components/utils/normalize.js"
+const NEW_ASSIGNMENT = "assignments/new";
+
+
 
 const TEACHER_CLASSES = "/classes/teach"
 const NEW_TEACHER_CLASS = "classes/teacher/new";
@@ -46,6 +48,14 @@ export const setClassIsLoaded = (bool) => {
 const deleteClass = (classId) => {
     return {
         type: DELETE_CLASS,
+        classId
+    }
+}
+
+const newAssignment = (assignment, classId) => {
+    return {
+        type: NEW_ASSIGNMENT,
+        assignment,
         classId
     }
 }
@@ -116,6 +126,22 @@ export const deleteClassThunk = (classId) => async dispatch => {
     }
 }
 
+export const newAssignmentThunk = (assignment, classId) => async dispatch => {
+    const response = await fetch(`/api/assignments/${classId}/new`, {
+        method: "POST",
+        headers: {"Content-Type": "Application/json"},
+        body: JSON.stringify(assignment)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return
+        }
+        dispatch(newAssignment(data, classId));
+        return data;
+    }
+}
 
 
 const initialState = { classes: {}, singleClassId: null, classIsLoaded: false };
@@ -160,6 +186,13 @@ const teacherClassReducer = (state = initialState, action)  => {
              singleClassId: null, classIsLoaded: false
             };
             delete newState.classes[action.classId];
+            return newState;
+        }
+        case NEW_ASSIGNMENT: {
+            newState = {...state, classes: {...state.classes}};
+            newState.classes[action.classId].assignments =
+            {...newState.classes[action.classId].assignments,
+                 [action.assignment.id]: {...action.assignment}}
             return newState;
         }
         default:
