@@ -1,14 +1,17 @@
 from app.models import db, environment, add_prefix_for_prod, SCHEMA, UserClass, UserType, User
 from datetime import datetime
 from sqlalchemy.orm import Session
+from random import randint
 class Class(db.Model):
     __tablename__ = 'classes'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    code = db.Column(db.String(6), unique=True)
     section = db.Column(db.String(100), nullable=True)
     subject = db.Column(db.String(100), nullable=True)
     room = db.Column(db.String(100), nullable=True)
@@ -19,6 +22,17 @@ class Class(db.Model):
     assignments = db.relationship("Assignment",
         back_populates="_class", cascade="all, delete-orphan")
     announcements = db.relationship("Announcement", back_populates="class_", cascade="all, delete-orphan")
+
+    def __init__(self, *args, **kwargs):
+        super(Class, self).__init__(*args, **kwargs)
+        self.code = self.generate_code()
+
+    def generate_code(self):
+        while True:
+            code = ''.join([str(randint(0, 9)) for _ in range(6)])
+            if not Class.query.filter_by(code=code).first():
+                return code
+
 
 
     def normalize(self, data):
@@ -88,6 +102,7 @@ class Class(db.Model):
         "subject": self.subject,
         "room": self.room,
         "image": self.image,
+        "code": self.code,
         "created_at": self.created_at,
         "updated_at": self.updated_at,
         "assignments": self.normalize([ assignment.to_safe_dict() for assignment in self.assignments]),
@@ -100,6 +115,7 @@ class Class(db.Model):
         "name": self.name,
         "section": self.section,
         "subject": self.subject,
+        "code": self.code,
         "room": self.room,
         "image": self.image,
         "created_at": self.created_at,

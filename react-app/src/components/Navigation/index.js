@@ -6,6 +6,7 @@ import './Navigation.css';
 import OpenModalButton from '../OpenModalButton';
 import NewClassButton from './NewClassButton';
 import ClassNavigation from "./classNavigation.js";
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 function Navigation({isLoaded}){
 	const sessionUser = useSelector(state => state.session.user);
 	const singleClassId = useSelector(state => state.teacher.singleClassId);
@@ -24,6 +25,7 @@ function Navigation({isLoaded}){
             </div>
 			{isLoaded && (
 				<div className="nav-second">
+			<Link to="/classes/join">Join a Class</Link>
 			<NewClassButton />
 			<ProfileButton user={sessionUser} />
 				</div>
