@@ -81,7 +81,26 @@
 }
 #settings-icon {
     margin: 1em 1em 1em 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 1.5rem;
+}
+
+#settings-icon :hover {
+    background-color: rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 1.5rem;
+    width: 1em;
+    height: 1em;
 }
 .cls-name-section {
     margin: 1em 0em 1em 1em;
@@ -109,4 +128,21 @@ border-bottom-right-radius: 5px;
     height: 20%;
 
 
+}
+
+.cls-options-cont {
+    position: absolute;
+    background-color: #fff;
+    transform-origin: left top;
+    width: 7em;
+    height: 10em;
+    margin-left: 17em;
+    margin-top: 3.3em;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 1rem;
+    letter-spacing: .00625em;
+    font-weight: 400;
+    border-radius: 3px;
+    /* max-height: 242px; */
 }

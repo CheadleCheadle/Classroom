@@ -5,6 +5,7 @@ import Banner from "./banner";
 import NewAnnouncement from "./NewAnnouncement";
 import UpcomingWork from "./ClassCode&Upcoming/upcoming";
 import "./main.css"
+import AssignmentStream from "./ClassStream/assignmentStream";
 export default function ClassPage() {
 
     const { classId } = useParams()
@@ -19,6 +20,7 @@ export default function ClassPage() {
                 <UpcomingWork/>
             <div className="announcements-cont">
             <NewAnnouncement/>
+            <AssignmentStream assignments={class_.assignments} classId={classId}/>
             </div>
         </div>
         </div>
@@ -29,7 +31,7 @@ export default function ClassPage() {
 
 
 
-function useClassDetails(id) {
+export function useClassDetails(id) {
     id = parseInt(id);
     const class_ = useSelector(state => state.student.classes[id]);
     const class__ = useSelector(state => state.teacher.classes[id]);

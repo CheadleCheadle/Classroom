@@ -1,5 +1,6 @@
-from app.models import db, environment, add_prefix_for_prod, SCHEMA
+from app.models import db, environment, add_prefix_for_prod, SCHEMA, UserClass, UserType, User
 from datetime import datetime
+from sqlalchemy.orm import Session
 class Class(db.Model):
     __tablename__ = 'classes'
 
@@ -19,6 +20,12 @@ class Class(db.Model):
         back_populates="_class", cascade="all, delete-orphan")
     announcements = db.relationship("Announcement", back_populates="class_", cascade="all, delete-orphan")
 
+
+    def normalize(self, data):
+        normalized = {}
+        for value in (data):
+            normalized[value["id"]] = value
+        return normalized
     # @property
     # def description(self):
     #     return self.description
@@ -83,7 +90,8 @@ class Class(db.Model):
         "image": self.image,
         "created_at": self.created_at,
         "updated_at": self.updated_at,
-        "assignments": [ assignment.to_safe_dict() for assignment in self.assignments]
+        "assignments": self.normalize([ assignment.to_safe_dict() for assignment in self.assignments]),
+        "users": [user.to_dict() for user in self.users]
         }
 
     def to_safe_dict(self):

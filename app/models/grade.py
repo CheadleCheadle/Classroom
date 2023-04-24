@@ -10,6 +10,7 @@ class UserAssignment(db.Model):
 
     assignment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("assignments.id")), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True)
+    # created_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     grade = db.Column(db.Numeric, nullable=True)
     created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.Date, nullable=False, default=datetime.utcnow )
@@ -36,5 +37,5 @@ class UserAssignment(db.Model):
                 "user_id": self.user_id,
                 "grade": self.grade,
                 "created_at": self.created_at,
-                "updated_at": self.updated_at
+                "updated_at": self.updated_at,
                 }
