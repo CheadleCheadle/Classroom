@@ -112,3 +112,17 @@ def get_teachers(classId):
     ).first()
     print("==========", classId, teacher.to_safe_dict())
     return teacher.to_dict()
+
+
+@class_routes.route('/<int:classId>/delete', methods=["DELETE"])
+@login_required
+def delete_class(classId):
+    """Delete a class"""
+    class_ = db.session.query(Class).join(UserClass).filter(
+        UserClass.class_id == classId,
+        UserClass.user_id == current_user.id,
+        UserClass.status == UserType.TEACHER
+    ).first()
+    db.session.delete(class_)
+    db.session.commit()
+    return {"success": "Class Deleted"}

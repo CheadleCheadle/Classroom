@@ -25,8 +25,6 @@ export default function ClassOptions({class_}) {
     };
 
     const handlePropagation = (e) => {
-      e.preventDefault();
-        e.stopPropagation();
         console.log("CLICKE ME")
     }
 
@@ -64,7 +62,7 @@ export default function ClassOptions({class_}) {
             <OpenModalButton
               buttonText="Delete"
               onButtonClick={handlePropagation}
-              modalComponent={<DeleteClass />}
+              modalComponent={<DeleteClass classId={class_.id} />}
 
             />
 

@@ -1,3 +1,4 @@
+import { startCase } from "lodash";
 import normalize from "../components/utils/normalize.js"
 
 const TEACHER_CLASSES = "/classes/teach"
@@ -5,7 +6,7 @@ const NEW_TEACHER_CLASS = "classes/teacher/new";
 const SET_CLASS_ID = "classes/SET_CLASS";
 const EDIT_CLASS = "class/edit";
 const SET_CLASS_IS_LOADED = "class/isLoaded";
-
+const DELETE_CLASS = "class/delete";
 
 const getClassesActionTeacher = (classes) => {
     return {
@@ -39,6 +40,13 @@ export const setClassIsLoaded = (bool) => {
     return {
         type: SET_CLASS_IS_LOADED,
         bool
+    }
+}
+
+const deleteClass = (classId) => {
+    return {
+        type: DELETE_CLASS,
+        classId
     }
 }
 
@@ -94,6 +102,20 @@ export const editTeacherClassThunk = (class_) => async dispatch => {
     }
 }
 
+export const deleteClassThunk = (classId) => async dispatch => {
+    const response = await fetch(`/api/classes/${classId}/delete`, {
+        method: "DELETE",
+        headers: {"Content-Type": "Application/json"},
+        body: null
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(deleteClass(classId));
+        return data;
+    }
+}
+
 
 
 const initialState = { classes: {}, singleClassId: null, classIsLoaded: false };
@@ -132,6 +154,13 @@ const teacherClassReducer = (state = initialState, action)  => {
                 ...state,
                 classIsLoaded: action.bool
             }
+        }
+        case DELETE_CLASS: {
+            newState = {...state, classes: {...state.classes},
+             singleClassId: null, classIsLoaded: false
+            };
+            delete newState.classes[action.classId];
+            return newState;
         }
         default:
             return state;
