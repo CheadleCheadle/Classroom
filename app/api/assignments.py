@@ -49,3 +49,33 @@ def new_assignment(classId):
         print('--------------------------------', new_assignment.to_safe_dict())
         return new_assignment.to_safe_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@assignment_routes.route('/<int:assignmentId>/edit', methods=["PUT"])
+@login_required
+def edit_assignment(assignmentId):
+    """Allows for assignments to be edited"""
+    form = AssignmentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    print('HERE ARE THE VALIDATION ERRORS', form.errors)
+    if form.validate_on_submit():
+        assignment_to_edit = Assignment.query.get(assignmentId)
+        assignment_to_edit.title = form.data["title"]
+        assignment_to_edit.instructions = form.data["instructions"]
+        assignment_to_edit.points = form.data["points"]
+        assignment_to_edit.due_date = form.data["due_date"]
+        assignment_to_edit.topic = form.data["topic"]
+
+        db.session.commit()
+        return assignment_to_edit.to_safe_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@assignment_routes.route('/<int:assignmentId>/delete', methods=["DELETE"])
+@login_required
+def delete_assignment(assignmentId):
+    """Delete an assignment"""
+    assignment = Assignment.query.get(assignmentId)
+    db.session.delete(assignment)
+    db.session.commit()
+    return {"success": "Assignment Deleted"}

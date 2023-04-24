@@ -48,6 +48,9 @@ function App() {
            {!!user && <Route exact path="/class/:classId/assignments/new">
             <NewAssignment />
             </Route>}
+            {!!user && <Route exact path="/class/:classId/assignments/:assignmentId/edit">
+            <NewAssignment edit={true}/>
+            </Route>}
             {/* <Redirect to="/login"></Redirect> */}
         </Switch>
       )}

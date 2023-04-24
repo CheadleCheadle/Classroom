@@ -23,8 +23,8 @@ class Class(db.Model):
 
     def normalize(self, data):
         normalized = {}
-        for key, value in enumerate(data):
-            normalized[key] = value
+        for value in (data):
+            normalized[value["id"]] = value
         return normalized
     # @property
     # def description(self):

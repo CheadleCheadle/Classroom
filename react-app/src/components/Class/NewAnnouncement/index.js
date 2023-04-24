@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import "./main.css";
 
-export default function NewAnnouncement() {
+export default function NewAnnouncement({edit}) {
     const [announcement, setAnnouncement] = useState("");
 
     return (

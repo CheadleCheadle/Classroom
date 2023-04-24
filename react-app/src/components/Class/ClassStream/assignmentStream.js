@@ -4,11 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from "react";
 import "./main.css";
 import { useEffect } from "react";
+import AssignmentOptions from "./assignmentOptions";
 export default function AssignmentStream({ assignments, classId}) {
         assignments = Object.values(assignments);
         const dtFormat = new Intl.DateTimeFormat('en-US');
         const [isLoading, teacher] = useTeacher(classId);
         console.log("Here is the teach", assignments);
+
+
     return (
 
         assignments.map((assignment) => (
@@ -25,7 +28,8 @@ export default function AssignmentStream({ assignments, classId}) {
                 </div>
             </div>
              <div className="assignment-options">
-                <FontAwesomeIcon icon={faEllipsisVertical} className="fa-2x"style={{color: "#a30000",}} />
+                {/* <FontAwesomeIcon icon={faEllipsisVertical} className="fa-2x"style={{color: "#a30000",}} /> */}
+                <AssignmentOptions assignment={assignment} classId={classId}/>
              </div>
         </div>
         ))
