@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom"
 import "./Navigation.css";
+import { useSelector } from "react-redux";
 import ClassOptions from "../AllClasses/classOptions";
 // import { useSelector } from "react-redux";
 export default function ClassNavigation() {
-  // const classId = useSelector(state => state.teacher.singleClassId);
+  const classId = useSelector(state => state.teacher.singleClassId);
     return (
         <>
         <NavLink
@@ -16,7 +17,7 @@ export default function ClassNavigation() {
         </NavLink>
 
         <NavLink
-          to={'/class/1/classwork'}
+          to={`/class/${classId}/classwork`}
           className={({ isActive, isPending}) =>
             isPending ? "pending" : "isActive" ? "active" : ""
           }

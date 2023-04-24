@@ -154,3 +154,24 @@ def check_class_code():
             return {"errors": "You are already apart of this class."}
     else:
         return {"errors": "Class not found..."}
+
+
+@class_routes.route('/check-owner', methods=["POST"])
+@login_required
+def check_owner():
+    data = json.loads(request.data)
+    # print('--------------------------------------', data., data.class_id)
+    user = db.session.query(User).join(UserClass).filter(
+        UserClass.user_id == current_user.id,
+        UserClass.class_id == data["class_id"],
+        UserClass.status == UserType.TEACHER
+    ).first()
+    print("================", user)
+    if user:
+        return {
+            "check": True
+        }
+    else:
+        return {
+            "check": False
+        }

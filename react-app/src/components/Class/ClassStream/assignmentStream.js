@@ -6,7 +6,11 @@ import "./main.css";
 import { useEffect } from "react";
 import AssignmentOptions from "./assignmentOptions";
 export default function AssignmentStream({ assignments, classId}) {
+        if (Object.values(assignments).length) {
         assignments = Object.values(assignments);
+        } else {
+            assignments = [];
+        }
         const dtFormat = new Intl.DateTimeFormat('en-US');
         const [isLoading, teacher] = useTeacher(classId);
         console.log("Here is the teach", assignments);

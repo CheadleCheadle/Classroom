@@ -17,15 +17,6 @@ export default function Classes() {
         dispatch(setClassIsLoaded(true));
         history.push(`/class/${class_.id}`);
     }
-    // const openOptions = (e, class_) => {
-    //     e.cancelBubble = true;
-    //     console.log("IM THE CLASS!", class_)
-    //     setIsVisible(!isVisible);
-    //     e.stopPropagation();
-    //     dispatch(setClassId(class_.id))
-    // }
-
-    // document.addEventListener("click", openOptions);
 
     return isLoaded && (
         <div className="cls-cont">
