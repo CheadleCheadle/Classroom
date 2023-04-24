@@ -46,9 +46,10 @@ export const newStudentClassThunk = (classCode) => async dispatch => {
         if (data.errors) {
             console.log("HERE ARE ERRORS", data.errors);
             return {errors: data.errors};
-        }
+        } else {
         dispatch(newClass(data));
         return data;
+        }
     }
 }
 

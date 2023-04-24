@@ -12,9 +12,10 @@ export default function JoinClass() {
         const data = await dispatch(newStudentClassThunk(code));
         if (data?.errors) {
             setErrors(data.errors);
-        }
+        } else {
         console.log("should be the class", data);
         history.push(`/class/${data.id}`)
+        }
     }
     return (
         <div className="join-class-cont">
@@ -34,7 +35,7 @@ export default function JoinClass() {
             maxLength="6"
             onChange={(e) => setCode(e.target.value)}
             ></input>
-            <button onClick={() => handleJoin()}>Join</button>
+            <button disabled={code.length < 6 ? true : false} onClick={() => handleJoin()}>Join</button>
             </div>
             <p>{errors}</p>
             </div>
