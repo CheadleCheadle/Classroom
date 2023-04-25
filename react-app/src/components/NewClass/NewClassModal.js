@@ -72,7 +72,7 @@ export default function NewClassModal({edit, class_}) {
              placeholder="Room" />
         </form>
         <div>
-            <button onClick={handleSubmit}>Create</button>
+            <button onClick={handleSubmit}>{edit ? "Update" : "Create"}</button>
             <button>Cancel</button>
         </div>
         </>

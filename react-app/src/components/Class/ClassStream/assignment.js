@@ -44,7 +44,7 @@ export default function AssignmentPage() {
 }
 
 
-function GetAssignment(classId, assignmentId) {
+export function GetAssignment(classId, assignmentId) {
     const assignment = useSelector(state => state.teacher?.classes[classId]?.assignments[assignmentId]);
     const assignmentCheck = useSelector(state => state.student?.classes[classId]?.assignments[assignmentId]);
     if (!assignment) {

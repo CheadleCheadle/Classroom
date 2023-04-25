@@ -28,7 +28,8 @@ export default function ClassOptions({class_}) {
     };
 
     const handlePropagation = (e) => {
-        console.log("CLICKE ME")
+        e.preventDefault();
+        e.stopPropagation();
     }
 
     const dropClassName = "cls-options-cont" + (isVisible ? "" : " hidden");
@@ -42,18 +43,17 @@ export default function ClassOptions({class_}) {
         </div>
     {isVisible &&
     <div className={dropClassName}>
-
-        <div>
+        {/* Used a stopProp here so when a user clicks on a classes
+            options it doesn't load all the information for that class.
+        */}
+        <div onClick={(e) => e.stopPropagation()}>
             <OpenModalButton
               buttonText="Edit"
-              onButtonClick={handlePropagation}
               modalComponent={<NewClassModal edit={true} class_={class_} />}
             />
             <OpenModalButton
               buttonText="Delete"
-              onButtonClick={handlePropagation}
               modalComponent={<DeleteClass classId={class_.id} />}
-
             />
 
         </div>
@@ -64,7 +64,7 @@ export default function ClassOptions({class_}) {
   )
 }
 
-function useIsOwner(classId) {
+export function useIsOwner(classId) {
   const [isOwner, setIsOwner] = useState(false)
   useEffect(() => {
     async function CheckClassOwner(classId) {
@@ -84,6 +84,9 @@ function useIsOwner(classId) {
       }
     }
     CheckClassOwner(classId);
+    return () => {
+      setIsOwner(false);
+    }
   }, [classId])
   return isOwner;
 }

@@ -51,9 +51,9 @@ export function useClasses(flag) {
 
     useEffect(() => {
         if (flag) {
-        dispatch(getClassesTeacherThunk())
         dispatch(setClassId(null));
         dispatch(setClassIsLoaded(false))
+        dispatch(getClassesTeacherThunk())
         dispatch(getClassesStudentThunk())
         .then(() => {
         setIsLoaded(true);
