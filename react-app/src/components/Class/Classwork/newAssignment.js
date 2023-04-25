@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { GetAssignment } from "../ClassStream/assignment";
 export default function NewAssignment({edit}) {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,6 +16,7 @@ export default function NewAssignment({edit}) {
     console.log("Here are the classId and assignment Id", classId, assignmentId)
     // const class_ = useSelector(state => state.teacher.classes[state.teacher.singleClassId]);
     const assignment = useSelector(state => state.teacher.classes[classId].assignments[assignmentId]);
+    // const assignment = GetAssignment(classId, assignmentId)
     console.log("Im the assignment", assignment)
     const handleSubmit = (e) => {
         e.preventDefault();

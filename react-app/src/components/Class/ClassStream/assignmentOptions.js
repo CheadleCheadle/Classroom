@@ -6,12 +6,13 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./main.css";
 import OpenModalButton from "../../OpenModalButton";
 import { deleteAssignmentThunk } from "../../../store/classTeacher";
+import { useIsOwner } from "../../AllClasses/classOptions";
 export default function AssignmentOptions({classId, assignment}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef();
-
+    const isOwner = useIsOwner(classId);
     const openMenu = (e) => {
     e.stopPropagation();
     if (isVisible) {
@@ -33,27 +34,15 @@ export default function AssignmentOptions({classId, assignment}) {
         e.stopPropagation();
         history.push(`/class/${classId}/assignments/${assignment.id}/edit`)
     }
-    // useEffect(() => {
-    //   if (!isVisible) return;
 
-    //   // const closeMenu = (e) => {
-    //   //   if (!ref.current.contains(e.target)) {
-    //   //     setIsVisible(false);
-    //   //   }
-    //   // };
-
-    //   // document.addEventListener("click", closeMenu);
-
-    //   // return () => document.removeEventListener("click", closeMenu);
-    // }, [isVisible]);
     const dropClassName = "assignment-options-cont" + (isVisible ? "" : " hidden");
     const closeMenu = () => setIsVisible(false);
     document.addEventListener("click", closeMenu);
 
-  return (
+  return ( isOwner &&
     <>
         <div onClick={(e) => openMenu(e)} id="settings-icon">
-        <FontAwesomeIcon className="fa-2x"  icon={faEllipsisVertical} style={{color: "red",}} />
+        <FontAwesomeIcon className="fa-2x"  icon={faEllipsisVertical} />
         </div>
     {isVisible &&
     <div className={dropClassName}>

@@ -244,3 +244,7 @@
     flex-direction: column;
     max-width: 100%;
 }
+
+.fa-ellipsis-vertical {
+    color: rgb(232,113,10);
+}
