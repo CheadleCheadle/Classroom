@@ -43,7 +43,9 @@ export default function ClassOptions({class_}) {
         </div>
     {isVisible &&
     <div className={dropClassName}>
-
+        {/* Used a stopProp here so when a user clicks on a classes
+            options it doesn't load all the information for that class.
+        */}
         <div onClick={(e) => e.stopPropagation()}>
             <OpenModalButton
               buttonText="Edit"
