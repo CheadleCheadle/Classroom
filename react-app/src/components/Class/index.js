@@ -6,6 +6,7 @@ import NewAnnouncement from "./NewAnnouncement";
 import UpcomingWork from "./ClassCode&Upcoming/upcoming";
 import "./main.css"
 import AssignmentStream from "./ClassStream/assignmentStream";
+import ClassCode from "./ClassCode&Upcoming";
 export default function ClassPage() {
 
     const { classId } = useParams()
@@ -17,7 +18,10 @@ export default function ClassPage() {
             <Banner class_={class_}/>
         </div>
         <div className="cls-details">
-                <UpcomingWork/>
+            <div id="code-work">
+                <ClassCode class_={class_} />
+                <UpcomingWork classId={classId}/>
+            </div>
             <div className="announcements-cont">
             <NewAnnouncement/>
             <AssignmentStream assignments={class_.assignments} classId={classId}/>

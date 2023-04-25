@@ -1,7 +1,7 @@
 .crt-announcement-cont {
     display: flex;
     flex-direction: column;
-    width:50em;
+    width:49em;
     height: 16em;
     border-radius: .5rem;
     border: 0.0625rem solid #dadce0;

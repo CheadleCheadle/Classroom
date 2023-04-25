@@ -2,10 +2,8 @@
     display: flex;
     flex-direction: column;
     border: 0.0625rem solid #dadce0;
-    width: 12.125rem;
+    max-width: 100%;
     border-radius: .5rem;
-    display: flex;
-    flex-direction: column;
     gap: 1em;
     padding: 1em;
     height: 5em;
@@ -37,4 +35,36 @@
     flex-direction: row;
     justify-content: flex-end;
     text-decoration: none;
+    color: rgb(232,113,10);
+}
+
+.class-code {
+    display: flex;
+    flex-direction: column;
+    border: 0.0625rem solid #dadce0;
+    border-radius: .5rem;
+    padding: 1em;
+    height: 4em;
+    max-width: 100%;
+}
+
+.class-code h2 {
+    letter-spacing: .01785714em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: #3c4043;
+    text-transform: none;
+    margin: 0 0 0 0;
+}
+
+
+#cls-code h1{
+    line-height: 1.75rem;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 1.5rem;
+    color: rgb(32,33,36);
+    fill: rgb(32,33,36);
+    margin: .5em 0 0 0;
 }

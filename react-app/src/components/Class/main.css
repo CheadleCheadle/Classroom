@@ -91,3 +91,11 @@
     gap: 2em;
     margin-top: 1.5em;
 }
+
+
+#code-work {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    width: 13em;
+}

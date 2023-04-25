@@ -238,3 +238,9 @@
     flex-direction: column;
     gap: 1em;
 }
+
+.announcements-cont {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
