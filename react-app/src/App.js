@@ -12,6 +12,9 @@ import { useClasses } from "./components/AllClasses/classes";
 import ClassOptions from "./components/AllClasses/classOptions";
 import ClassWork from "./components/Class/Classwork";
 import NewAssignment from "./components/Class/Classwork/newAssignment";
+import JoinClass from "./components/Navigation/joinClass";
+import AssignmentPage from "./components/Class/ClassStream/assignment";
+
 function App() {
   const user = GetUser();
   const dispatch = useDispatch();
@@ -34,7 +37,7 @@ function App() {
             <SignupFormPage />
           </Route>
 
-          {!!user && <Route path="/classes">
+          {!!user && <Route exact path="/classes">
             <AllClasses />
           </Route>
           }
@@ -50,6 +53,12 @@ function App() {
             </Route>}
             {!!user && <Route exact path="/class/:classId/assignments/:assignmentId/edit">
             <NewAssignment edit={true}/>
+            </Route>}
+            {!!user && <Route path="/classes/join">
+              <JoinClass />
+            </Route>}
+            {!!user && <Route exact path="/classes/:classId/assignments/:assignmentId">
+              <AssignmentPage />
             </Route>}
             {/* <Redirect to="/login"></Redirect> */}
         </Switch>

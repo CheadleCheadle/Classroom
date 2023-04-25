@@ -4,6 +4,7 @@ from app.models import db, Class, User, UserClass, UserType
 from app.forms import ClassForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from random import choice
+import json
 class_routes = Blueprint('class', __name__)
 default_images = ["https://gstatic.com/classroom/themes/img_code.jpg", "https://gstatic.com/classroom/themes/img_bookclub.jpg",
                   "https://gstatic.com/classroom/themes/Honors.jpg", "https://gstatic.com/classroom/themes/img_breakfast.jpg"]
@@ -110,7 +111,6 @@ def get_teachers(classId):
         UserClass.class_id == classId,
         UserClass.status == UserType.TEACHER
     ).first()
-    print("==========", classId, teacher.to_safe_dict())
     return teacher.to_dict()
 
 
@@ -126,3 +126,52 @@ def delete_class(classId):
     db.session.delete(class_)
     db.session.commit()
     return {"success": "Class Deleted"}
+
+
+@class_routes.route('join', methods=["POST"])
+@login_required
+def check_class_code():
+    """Compares an inputed classcode to a list of all classcodes"""
+    data = json.loads(request.data)
+    print('------------', data)
+    class_ = Class.query.filter(
+        Class.code == data
+    ).first()
+
+    if class_:
+        join_params = {
+            "class_id": class_.id,
+            "user_id": current_user.id,
+            "status": UserType.STUDENT
+        }
+
+        new_class_status = UserClass(**join_params)
+        try:
+            db.session.add(new_class_status)
+            db.session.commit()
+            return class_.to_dict()
+        except Exception:
+            return {"errors": "You are already apart of this class."}
+    else:
+        return {"errors": "Class not found..."}
+
+
+@class_routes.route('/check-owner', methods=["POST"])
+@login_required
+def check_owner():
+    data = json.loads(request.data)
+    # print('--------------------------------------', data., data.class_id)
+    user = db.session.query(User).join(UserClass).filter(
+        UserClass.user_id == current_user.id,
+        UserClass.class_id == data["class_id"],
+        UserClass.status == UserType.TEACHER
+    ).first()
+    print("================", user)
+    if user:
+        return {
+            "check": True
+        }
+    else:
+        return {
+            "check": False
+        }

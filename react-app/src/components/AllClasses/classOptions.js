@@ -12,6 +12,9 @@ export default function ClassOptions({class_}) {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef();
 
+    const isOwner = useIsOwner(class_.id)
+    console.log("HERE is the avl", isOwner);
+
     const openMenu = (e) => {
     e.stopPropagation();
     if (isVisible) {
@@ -28,24 +31,11 @@ export default function ClassOptions({class_}) {
         console.log("CLICKE ME")
     }
 
-    // useEffect(() => {
-    //   if (!isVisible) return;
-
-    //   // const closeMenu = (e) => {
-    //   //   if (!ref.current.contains(e.target)) {
-    //   //     setIsVisible(false);
-    //   //   }
-    //   // };
-
-    //   // document.addEventListener("click", closeMenu);
-
-    //   // return () => document.removeEventListener("click", closeMenu);
-    // }, [isVisible]);
     const dropClassName = "cls-options-cont" + (isVisible ? "" : " hidden");
     const closeMenu = () => setIsVisible(false);
     document.addEventListener("click", closeMenu);
 
-  return (
+  return ( isOwner &&
     <>
         <div onClick={(e) => openMenu(e)} id="settings-icon">
         <FontAwesomeIcon className="fa-2x"  icon={faEllipsisVertical} style={{color: "#fff",}} />
@@ -72,4 +62,28 @@ export default function ClassOptions({class_}) {
     }
     </>
   )
+}
+
+function useIsOwner(classId) {
+  const [isOwner, setIsOwner] = useState(false)
+  useEffect(() => {
+    async function CheckClassOwner(classId) {
+      const response = await fetch('/api/classes/check-owner', {
+        method: "POST",
+        headers: { "Content-Type": "Application/json" },
+        body: JSON.stringify({ class_id: classId })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("this is the check", data, classId);
+        if (data.check) {
+          setIsOwner(true)
+        } else {
+          setIsOwner(false)
+        }
+      }
+    }
+    CheckClassOwner(classId);
+  }, [classId])
+  return isOwner;
 }

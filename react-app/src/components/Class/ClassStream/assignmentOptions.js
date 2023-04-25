@@ -30,6 +30,7 @@ export default function AssignmentOptions({classId, assignment}) {
 
     const handleEdit = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         history.push(`/class/${classId}/assignments/${assignment.id}/edit`)
     }
     // useEffect(() => {

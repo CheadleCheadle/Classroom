@@ -1,0 +1,48 @@
+.join-class-cont {
+    margin: 1.5em auto;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em
+}
+
+.join-class-account {
+    max-width: 100%;
+    padding: 1em 0em 1em 1em;
+    height: 8em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .2px;
+    line-height: 20px;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid #dadce0;
+}
+
+.class-code-cont {
+    display: flex;
+    padding: 1em 0em 1em 1em;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 100%;
+    height: 14em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .2px;
+    line-height: 20px;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid #dadce0;
+}
+
+#cls-code-input {
+    width: 50%;
+    height: 4em;
+}
+
+.code-input-cont {
+    gap: 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
