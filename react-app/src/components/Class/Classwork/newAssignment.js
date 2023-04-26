@@ -50,14 +50,14 @@ export default function NewAssignment({edit}) {
                 <form onSubmit={handleSubmit}>
                     <input
                     type="text"
-                    placeholder="Title"
+                    placeholder="Title (required)"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     />
                     <input
                     type="text"
-                    placeholder="Instructions"
+                    placeholder="Instructions (optional)"
                     value={instructions}
                     onChange={(e) => setInstructions(e.target.value)}
                     />
@@ -66,17 +66,19 @@ export default function NewAssignment({edit}) {
                     placeholder="Points"
                     value={points}
                     onChange={(e) => setPoints(e.target.value)}
+                    required
                     />
                     <input
                     type="datetime-local"
                     placeholder="Due date"
                     value={dueDate}
                     onChange={(e) => setDueDate(e.target.value)}
+                    required
                     />
                     <input
                     type="topic"
                     value={topic}
-                    placeholder="Topic"
+                    placeholder="Topic (optional)"
                     onChange={(e) => setTopic(e.target.value)}
                     />
                     <button type="submit">{edit ? "Update Assignment" : "Create Assignment"}</button>

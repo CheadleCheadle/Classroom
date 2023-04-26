@@ -89,7 +89,7 @@ function SignupFormPage() {
             placeholder="Confirm Password"
           />
         <div className="signup-buttons">
-        <button id="login-instead" onClick={() => history.push('/login')}>Sign in instead</button>
+        <button id="login-instead" onClick={() => history.push('/')}>Sign in instead</button>
         <button id="signup"type="submit">Sign Up</button>
         </div>
       </form>

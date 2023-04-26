@@ -34,7 +34,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout())
     .then(() => {
-      history.replace('/login');
+      history.replace('/');
     });
   };
 
