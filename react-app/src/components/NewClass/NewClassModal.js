@@ -51,25 +51,25 @@ export default function NewClassModal({edit, class_}) {
              type="text"
              value={name}
              onChange={(e) => setName(e.target.value)}
-             placeholder="Class name" />
+             placeholder="Class name (required)" />
 
             <input
              type="text"
              value={section}
              onChange={(e) => setSection(e.target.value)}
-             placeholder="Section" />
+             placeholder="Section (optional)" />
 
             <input
              type="text"
              value={subject}
              onChange={(e) => setSubject(e.target.value)}
-             placeholder="Subject" />
+             placeholder="Subject (optional)" />
 
             <input
              type="text"
              value={room}
              onChange={(e) => setRoom(e.target.value)}
-             placeholder="Room" />
+             placeholder="Room (optional)" />
         </form>
         <div>
             <button onClick={handleSubmit}>{edit ? "Update" : "Create"}</button>

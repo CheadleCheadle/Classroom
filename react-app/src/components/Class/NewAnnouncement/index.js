@@ -5,6 +5,10 @@ import "./main.css";
 export default function NewAnnouncement({edit}) {
     const [announcement, setAnnouncement] = useState("");
 
+    const handleClick = (e) => {
+        e.preventDefault();
+        window.alert("Feature coming soon...")
+    }
     return (
         <div className="crt-announcement-cont">
             <span id="for-label">For</span>
@@ -21,7 +25,7 @@ export default function NewAnnouncement({edit}) {
                     value={announcement}
                     onChange={(e) => setAnnouncement(e.target.value)}>
                     </input>
-                    <button onClick={() => window.alert("feature coming soon...")}>Post</button>
+                    <button onClick={(e) => handleClick(e)}>Post</button>
                 </form>
             </div>
 

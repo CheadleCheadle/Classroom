@@ -10,7 +10,12 @@ export default function AssignmentPage() {
     const assignment = GetAssignment(classId, assignmentId)
     const class_ = GetClass(classId);
     const [isLoading, teacher] = useTeacher(classId);
-    console.log("here is the assignment:", assignment );
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        window.alert("Feature coming soon...");
+    }
+
     return (
         <div className="assignment-page-cont">
             <div className="assignment-work-info-cont">
@@ -31,11 +36,11 @@ export default function AssignmentPage() {
                         <p> Assigned</p>
                     </div>
                     <div className="upload-work">
-                        <div id="add-work">
+                        <div onClick={(e) => handleClick(e)} id="add-work">
                         <FontAwesomeIcon icon={faPlus} />
                         Add Work
                         </div>
-                        <div id="mark-done">Mark as done</div>
+                        <div onClick={(e) => handleClick(e)} id="mark-done">Mark as done</div>
                     </div>
                 </div>
             </div>
