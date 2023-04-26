@@ -50,7 +50,7 @@
 }
 
 #login-errors {
-    height: 0;
+    color: red;
 }
 
 #lnding-msg {
@@ -73,4 +73,27 @@
     font-weight: 500;
     width: 100%;
     cursor: pointer;
+}
+#create-account-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+#create-account {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 1.5rem;
+    color: #1a73e8;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 7em;
+}
+
+#create-account:hover {
+    background-color: rgba(180, 209, 247, .2);
 }

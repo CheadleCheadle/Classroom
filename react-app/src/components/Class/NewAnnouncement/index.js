@@ -21,6 +21,7 @@ export default function NewAnnouncement({edit}) {
                     value={announcement}
                     onChange={(e) => setAnnouncement(e.target.value)}>
                     </input>
+                    <button onClick={() => window.alert("feature coming soon...")}>Post</button>
                 </form>
             </div>
 

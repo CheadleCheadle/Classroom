@@ -24,10 +24,8 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return ( isLoaded &&
+  return (
     <>
-      {!!user && <Navigation isLoaded={isLoaded} />}
-      {isLoaded && (
         <Switch>
           <Route path="/login" >
             <LoginFormPage />
@@ -36,7 +34,11 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-
+          </Switch>
+      {isLoaded && (
+        <>
+        {!!user && <Navigation isLoaded={isLoaded} />}
+          <Switch>
           {!!user && <Route exact path="/classes">
             <AllClasses isMainLoaded={isLoaded} />
           </Route>
@@ -62,6 +64,7 @@ function App() {
             </Route>}
             {/* <Redirect to="/login"></Redirect> */}
         </Switch>
+            </>
       )}
     </>
   );

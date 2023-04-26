@@ -3,8 +3,10 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./main.css";
 import { newStudentClassThunk } from "../../store/classStudent";
+import GetUser from "../utils/getUser";
 export default function JoinClass() {
     const dispatch = useDispatch();
+    const user = GetUser();
     const history = useHistory();
     const [code, setCode] = useState("");
     const [errors, setErrors] = useState("");
@@ -21,7 +23,7 @@ export default function JoinClass() {
         <div className="join-class-cont">
         <div className="join-class-account">
             <p>You're currently signed in as</p>
-            <div>Grant Cheadle</div>
+            <div>{user.first_name} {user.last_name}</div>
         </div>
             <div className="class-code-cont">
             <h2>Class code</h2>

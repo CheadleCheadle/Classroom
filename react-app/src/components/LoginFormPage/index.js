@@ -18,7 +18,10 @@ function LoginFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    history.replace("/classes");
+    console.log("THIS IS THE DATA", data);
+    if (!data) {
+      history.replace("/classes");
+    }
     if (data) {
       setErrors(data);
     }
@@ -29,7 +32,7 @@ function LoginFormPage() {
       <div className="login-form">
         <img id="goog-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"></img>
       <h2 id="signin">Sign in</h2>
-      <p id="lnding-msg">Use your Google Account</p>
+      <p id="lnding-msg">Use your Google Account (not really 😄)</p>
       <div className="form-login">
       <form onSubmit={handleSubmit}>
         <ul id="login-errors">
@@ -53,6 +56,9 @@ function LoginFormPage() {
           />
         <button id="login" type="submit">Log In</button>
       </form>
+      </div>
+      <div id="create-account-cont">
+      <div id="create-account" onClick={() => history.push('/signup')}>Create account</div>
       </div>
       </div>
       </div>
