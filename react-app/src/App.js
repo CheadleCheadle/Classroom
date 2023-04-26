@@ -38,7 +38,7 @@ function App() {
           </Route>
 
           {!!user && <Route exact path="/classes">
-            <AllClasses />
+            <AllClasses isMainLoaded={isLoaded} />
           </Route>
           }
           {!!user && <Route exact path="/class/:classId">

@@ -35,6 +35,7 @@
     border: none;
     width: 8em;
     height: 2.5em;
+    cursor: pointer;
 }
 
 #join-class {
@@ -48,6 +49,11 @@
     border: none;
     width: 8em;
     height: 2.5em;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cls-individual {
