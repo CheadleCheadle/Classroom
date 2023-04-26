@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,41 +18,50 @@ function LoginFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    console.log("THIS IS THE DATA", data);
+    if (!data) {
+      history.replace("/classes");
+    }
     if (data) {
       setErrors(data);
     }
   };
 
   return (
-    <>
-      <h1>Log In</h1>
+    <div className="login-form-cont">
+      <div className="login-form">
+        <img id="goog-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"></img>
+      <h2 id="signin">Sign in</h2>
+      <p id="lnding-msg">Use your Google Account (not really 😄)</p>
+      <div className="form-login">
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul id="login-errors">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Email"
           />
-        </label>
-        <label>
-          Password
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Password"
           />
-        </label>
-        <button type="submit">Log In</button>
+        <button id="login" type="submit">Log In</button>
       </form>
-    </>
+      </div>
+      <div id="create-account-cont">
+      <div id="create-account" onClick={() => history.push('/signup')}>Create account</div>
+      </div>
+      </div>
+      </div>
   );
 }
 

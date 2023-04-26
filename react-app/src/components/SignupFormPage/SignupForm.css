@@ -1,0 +1,85 @@
+.signup-form-cont {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 30em;
+    height: 32em;
+    padding: 2.5em;
+}
+
+.signup-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    width: 80%;
+}
+
+.signup-form input {
+    border: 0.0625rem solid #dadce0;
+    height: 2em;
+    border-radius: 7px;
+}
+
+.signup-form h1 {
+    font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.3333;
+    word-break: break-word;
+}
+
+#signup-img {
+    width: 15em;
+    height: 15em;
+}
+
+.form-image-cont {
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0.0625rem solid #dadce0;
+}
+
+#signup {
+    border: none;
+    background-color: #1a73e8;
+    height: 2em;
+    border-radius: 7px;
+    color: #fff;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+}
+.signup-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#login-instead {
+    color: #1a73e8;
+    background-color: #fff;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+}
+
+#login-instead:hover {
+    background-color: rgba(180, 209, 247, .2);
+}

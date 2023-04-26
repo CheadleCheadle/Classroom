@@ -26,7 +26,7 @@ export default function ClassNavigation() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/classes"
           className={({ isActive, isPending}) =>
             isPending ? "pending" : "isActive" ? "active" : ""
           }
@@ -35,7 +35,7 @@ export default function ClassNavigation() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/classes"
           className={({ isActive, isPending}) =>
             isPending ? "pending" : "isActive" ? "active" : ""
           }

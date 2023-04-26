@@ -50,3 +50,17 @@
   fill: gray;
   text-decoration: none;
 }
+
+#join-class-link {
+  text-decoration: none;
+  text-align: center;
+    color: #1a73e8;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: #fff;
+    border: none;
+    width: 8em;
+    height: 2.5em;
+    cursor: pointer;
+}

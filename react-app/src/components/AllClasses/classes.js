@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min.js";
 import { setClassId } from "../../store/classTeacher.js"
 import ClassOptions from "./classOptions.js";
 import { setClassIsLoaded } from "../../store/classTeacher.js";
-export default function Classes() {
+export default function Classes({isMainLoaded}) {
     const history = useHistory()
     const dispatch = useDispatch();
     const [isLoaded, classes] = useClasses(true)

@@ -133,7 +133,6 @@ def delete_class(classId):
 def check_class_code():
     """Compares an inputed classcode to a list of all classcodes"""
     data = json.loads(request.data)
-    print('------------', data)
     class_ = Class.query.filter(
         Class.code == data
     ).first()

@@ -29,7 +29,7 @@ function Navigation({isLoaded}){
             </div>
 			{isLoaded && (
 				<div className="nav-second">
-			<Link to="/classes/join">Join a Class</Link>
+			<Link  id="join-class-link"to="/classes/join">Join a Class</Link>
 			<NewClassButton />
 			<ProfileButton user={sessionUser} />
 				</div>
