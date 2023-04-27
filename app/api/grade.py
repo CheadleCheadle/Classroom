@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, request
 from app.forms import  GradeForm
-from app.models import Assignment, db, UserAssignment, Submission, File, submission_files
+from app.models import Assignment, db, UserAssignment, Submission, File
 from flask_login import current_user, login_required
 import json
 
@@ -27,10 +27,11 @@ def new_submission(assignmentId):
         files = form.files.data
         # files = request.data
         # the_files = request.files.getlist(files)
-        print("THIS IS THE FILE-----", files)
+        print("These are the files", files)
 
         for file in files:
             print("THIS IS THE FILE--------123123", file.filename)
+
             file.filename = get_unique_filename(file.filename)
             upload = upload_file_to_s3(file)
             print("HERE IS THE UPLOAD", upload)

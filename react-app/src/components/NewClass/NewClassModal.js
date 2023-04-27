@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { editTeacherClassThunk, newTeacherClassThunk } from "../../store/classTeacher";
-
+import "./main.css"
 export default function NewClassModal({edit, class_}) {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -12,7 +12,7 @@ export default function NewClassModal({edit, class_}) {
     const [subject, setSubject] = useState("");
     const [room, setRoom] = useState("");
     const [errors, setErrors] = useState([]);
-
+	const { closeModal } = useModal();
     const handleSubmit = (e) => {
 		e.preventDefault();
             let newClass = {name, section, subject, room};
@@ -21,13 +21,14 @@ export default function NewClassModal({edit, class_}) {
             newClass.id = class_.id
             console.log("Im being updated", newClass);
             const data = dispatch(editTeacherClassThunk(newClass));
+            closeModal();
             if (data) {
             setErrors(data)
         }
         } else {
         console.log("the new class", newClass);
         const data = dispatch(newTeacherClassThunk(newClass));
-
+        closeModal();
         if (data) {
             setErrors(data)
         }
@@ -45,8 +46,8 @@ export default function NewClassModal({edit, class_}) {
     }, [])
     return (
         <>
-        {edit ? <h2>Update class</h2> : <h2>Create class</h2>}
-        <form>
+        {edit ? <h2 id="create-class-header">Update class</h2> : <h2 id="create-class-header">Create class</h2>}
+        <form id="create-class-form">
             <input
              type="text"
              value={name}
@@ -71,9 +72,9 @@ export default function NewClassModal({edit, class_}) {
              onChange={(e) => setRoom(e.target.value)}
              placeholder="Room (optional)" />
         </form>
-        <div>
-            <button onClick={handleSubmit}>{edit ? "Update" : "Create"}</button>
-            <button>Cancel</button>
+        <div className="create-class-buttons">
+            <button onClick={() => closeModal()} id="cancel">Cancel</button>
+            <button id="submit-button"onClick={handleSubmit}>{edit ? "Update" : "Create"}</button>
         </div>
         </>
     )

@@ -2,12 +2,12 @@ from sqlalchemy import update
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-submission_files = db.Table(
-    "submission_files",
-    db.Model.metadata,
-    db.Column("submission_id", db.Integer, db.ForeignKey(add_prefix_for_prod("submissions.id")), primary_key=True),
-    db.Column("file_id", db.Integer, db.ForeignKey(add_prefix_for_prod("files.id")))
-)
+# submission_files = db.Table(
+#     "submission_files",
+#     db.Model.metadata,
+#     db.Column("submission_id", db.Integer, db.ForeignKey(add_prefix_for_prod("submissions.id")), primary_key=True),
+#     db.Column("file_id", db.Integer, db.ForeignKey(add_prefix_for_prod("files.id")))
+# )
 
 class File(db.Model):
     __tablename__ = "files"
@@ -18,3 +18,5 @@ class File(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String())
+    submission_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("submissions.id")))
+    submission = db.relationship('Submission', back_populates="files")
