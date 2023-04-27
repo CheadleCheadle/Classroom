@@ -1,30 +1,25 @@
-import { useState } from "react"
-
+import { useState} from "react"
+import { newAnnouncementThunk } from "../../../store/classTeacher";
 import "./main.css";
-
-export default function NewAnnouncement({edit}) {
+import { useDispatch } from "react-redux";
+export default function NewAnnouncement({edit, classId}) {
+    const dispatch = useDispatch();
     const [announcement, setAnnouncement] = useState("");
 
     const handleClick = (e) => {
         e.preventDefault();
-        window.alert("Feature coming soon...")
+        const newAnnouncement = {announcement};
+        dispatch(newAnnouncementThunk(newAnnouncement, classId))
     }
     return (
         <div className="crt-announcement-cont">
-            <span id="for-label">For</span>
-            <div className="drop-down-cont">
-                <select placeholder="Classes">
-                </select>
-                <select placeholder="All Students">
-                </select>
-            </div>
             <div className="announcement-form-cont">
                 <form>
-                    <input type="text"
+                    <textarea type="text"
                     placeholder="Announce something to your class"
                     value={announcement}
                     onChange={(e) => setAnnouncement(e.target.value)}>
-                    </input>
+                    </textarea>
                     <button onClick={(e) => handleClick(e)}>Post</button>
                 </form>
             </div>

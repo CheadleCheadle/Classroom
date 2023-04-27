@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./main.css";
 import { useEffect } from "react";
 import AssignmentOptions from "./assignmentOptions";
-export default function AssignmentStream({ assignments, classId}) {
+export default function AssignmentStream({ assignments, classId, announcements}) {
     const history = useHistory();
         if (Object.values(assignments).length) {
         assignments = Object.values(assignments);
@@ -21,8 +21,8 @@ export default function AssignmentStream({ assignments, classId}) {
         }
 
     return (
-
-        assignments.map((assignment) => (
+        <>
+        {assignments.map((assignment) => (
         <div onClick={() => handleClick(assignment.id)} key={assignment.id}  className="assignment-cont">
             <div className="assignment-info">
                 <div id="assignment-font-icon">
@@ -40,9 +40,9 @@ export default function AssignmentStream({ assignments, classId}) {
                 <AssignmentOptions assignment={assignment} classId={classId}/>
              </div>
         </div>
-        ))
+        ))}
 
-
+    </>
     )
 
 

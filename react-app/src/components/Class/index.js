@@ -7,6 +7,7 @@ import UpcomingWork from "./ClassCode&Upcoming/upcoming";
 import "./main.css"
 import AssignmentStream from "./ClassStream/assignmentStream";
 import ClassCode from "./ClassCode&Upcoming";
+import AnnouncementStream from "./ClassStream/announcementStream";
 export default function ClassPage() {
 
     const { classId } = useParams()
@@ -23,8 +24,9 @@ export default function ClassPage() {
                 <UpcomingWork classId={classId}/>
             </div>
             <div className="announcements-cont">
-            <NewAnnouncement/>
-            <AssignmentStream assignments={class_.assignments} classId={classId}/>
+            <NewAnnouncement classId={classId}/>
+            <AnnouncementStream announcements={class_.announcements} classId={classId} />
+            <AssignmentStream assignments={class_.assignments} announcements={class_.announcements}classId={classId}/>
             </div>
         </div>
         </div>

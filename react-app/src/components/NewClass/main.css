@@ -30,6 +30,15 @@
     line-height: 24px;
 }
 
+#create-class-form input:hover{
+    background-color: rgba(60,64,67,0.1);
+}
+
+#create-class-form input:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(25,103,210);
+}
+
 #create-class-header {
     padding: 0em 1.5em;
     font-family: "Google Sans",Roboto,Arial,sans-serif;

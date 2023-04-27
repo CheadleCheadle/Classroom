@@ -45,7 +45,9 @@ export default function AssignmentPage() {
                     <h1>{assignment.title}</h1>
                     <p id="creator-time"> {teacher.first_name} {teacher.last_name} | {assignment.created_at.slice(0, 17)} </p>
                     <p id="points">{assignment.points} points</p>
+                <div id="instructions-cont">
                 <p>{assignment.instructions}</p>
+                </div>
                 </div>
             </div>
             <div className="work-cont">

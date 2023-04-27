@@ -3,3 +3,4 @@ from .auth_routes import auth_routes
 from .user_routes import user_routes
 from .assignments import assignment_routes
 from .grade import grade_routes
+from .announcements import announcement_routes
