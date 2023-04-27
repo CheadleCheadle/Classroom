@@ -11,10 +11,11 @@ class UserAssignment(db.Model):
     assignment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("assignments.id")), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True)
     # created_by = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
-    grade = db.Column(db.Numeric, nullable=True)
+    # grade = db.Column(db.Numeric, nullable=True)
     created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.Date, nullable=False, default=datetime.utcnow )
-
+    # file = db.Column(db.String(255), nullable=True)
+    # done = db.Column(db.Boolean, nullable=True, default=False)
     # @property
     # def grade(self):
     #      return self.grade
@@ -35,7 +36,9 @@ class UserAssignment(db.Model):
         return {
                 "assignment_id": self.assignment_id,
                 "user_id": self.user_id,
-                "grade": self.grade,
+                # "grade": self.grade,
+                # "file": self.file,
+                # "done": self.done,
                 "created_at": self.created_at,
                 "updated_at": self.updated_at,
                 }

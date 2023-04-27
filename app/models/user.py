@@ -20,7 +20,9 @@ class User(db.Model, UserMixin):
 
     classes = db.relationship("Class", secondary=UserClass.__table__, backref="users")
     assignments = db.relationship("Assignment", secondary=UserAssignment.__table__, backref="students")
-
+    # submissions = db.relationship("Submission", secondary=UserSubmission.__table__, backref="users")
+    submissions = db.relationship("Submission", back_populates="user",
+                                   cascade="all, delete-orphan")
     @property
     def password(self):
         return self.hashed_password

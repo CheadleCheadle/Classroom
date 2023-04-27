@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 from .models import db, User
-from .api import class_routes, auth_routes, user_routes, assignment_routes
+from .api import class_routes, auth_routes, user_routes, assignment_routes, grade_routes
 from .seeds import seed_commands
 from .config import Config
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
@@ -28,6 +28,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(class_routes, url_prefix='/api/classes')
 app.register_blueprint(assignment_routes, url_prefix='/api/assignments')
+app.register_blueprint(grade_routes, url_prefix='/api/grades')
 db.init_app(app)
 Migrate(app, db)
 
