@@ -3,11 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session';
 import student from './classStudent';
 import teacher from './classTeacher';
-
+import submissions from './submissions';
 const rootReducer = combineReducers({
   session,
   student,
-  teacher
+  teacher,
+  submissions
 });
 
 

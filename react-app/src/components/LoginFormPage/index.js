@@ -27,6 +27,11 @@ function LoginFormPage() {
     }
   };
 
+  const handleDemo = () => {
+    dispatch(login("demo@aa.io", "password"))
+    .then(() => history.push('/classes'))
+  }
+
   return (
     <div className="login-form-cont">
       <div className="login-form">
@@ -59,6 +64,7 @@ function LoginFormPage() {
       </div>
       <div id="create-account-cont">
       <div id="create-account" onClick={() => history.push('/signup')}>Create account</div>
+      <div id="create-account" onClick={handleDemo}>Demo User</div>
       </div>
       </div>
       </div>

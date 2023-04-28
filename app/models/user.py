@@ -15,12 +15,14 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
     last_name= db.Column(db.String(100), nullable=False)
-    pfp = db.Column(db.String, nullable=True)
+    pfp = db.Column(db.String, nullable=True, default="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
 
 
     classes = db.relationship("Class", secondary=UserClass.__table__, backref="users")
     assignments = db.relationship("Assignment", secondary=UserAssignment.__table__, backref="students")
-
+    # submissions = db.relationship("Submission", secondary=UserSubmission.__table__, backref="users")
+    submissions = db.relationship("Submission", back_populates="user",
+                                   cascade="all, delete-orphan")
     @property
     def password(self):
         return self.hashed_password
@@ -39,7 +41,8 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'assignments': [assignment.to_safe_dict() for assignment in self.assignments],
             "first_name": self.first_name,
-            "last_name": self.last_name
+            "last_name": self.last_name,
+            "pfp": self.pfp,
         }
     def to_safe_dict(self):
         return {
@@ -47,5 +50,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             "first_name": self.first_name,
-            "last_name": self.last_name
+            "last_name": self.last_name,
+            "pfp": self.pfp,
         }

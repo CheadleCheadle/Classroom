@@ -91,8 +91,7 @@ class Class(db.Model):
 
     # @image.setter
     # def image(self, image):
-    #     self.image = image
-
+    #     self.image = imag
 
     def to_dict(self):
         return {
@@ -106,6 +105,7 @@ class Class(db.Model):
         "created_at": self.created_at,
         "updated_at": self.updated_at,
         "assignments": self.normalize([ assignment.to_safe_dict() for assignment in self.assignments]),
+        "announcements": self.normalize([ announcement.to_safe_dict() for announcement in self.announcements]),
         "users": [user.to_dict() for user in self.users]
         }
 

@@ -5,14 +5,17 @@ import Banner from "./banner";
 import NewAnnouncement from "./NewAnnouncement";
 import UpcomingWork from "./ClassCode&Upcoming/upcoming";
 import "./main.css"
-import AssignmentStream from "./ClassStream/assignmentStream";
+import GetUser from "../utils/getUser";
+import AssignmentStream, { useTeacher } from "./ClassStream/assignmentStream";
 import ClassCode from "./ClassCode&Upcoming";
+import AnnouncementStream from "./ClassStream/announcementStream";
 export default function ClassPage() {
-
+    const user = GetUser();
     const { classId } = useParams()
+    const [isLoading, teacher] = useTeacher(classId);
     const class_ = useClassDetails(classId);
 
-    return (
+    return ( isLoading &&
         <div className="cls-details-cont">
         <div className="cls-detail-pg">
             <Banner class_={class_}/>
@@ -23,8 +26,9 @@ export default function ClassPage() {
                 <UpcomingWork classId={classId}/>
             </div>
             <div className="announcements-cont">
-            <NewAnnouncement/>
-            <AssignmentStream assignments={class_.assignments} classId={classId}/>
+            { teacher.id === user.id ? <NewAnnouncement classId={classId} user={user}/>: null}
+            <AnnouncementStream announcements={class_.announcements} classId={classId} />
+            <AssignmentStream assignments={class_.assignments} announcements={class_.announcements}classId={classId}/>
             </div>
         </div>
         </div>

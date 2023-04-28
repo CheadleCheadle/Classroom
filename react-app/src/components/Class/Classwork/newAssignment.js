@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { GetAssignment } from "../ClassStream/assignment";
+import "./main.css";
 export default function NewAssignment({edit}) {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -45,45 +46,59 @@ export default function NewAssignment({edit}) {
 
     return (
 
-        <div>
-            <div>
-                <form onSubmit={handleSubmit}>
+        <div className="new-assignment-cont">
+                <div className="first-assignment-form">
+                <form id="first-form">
                     <input
+                    id="title"
                     type="text"
-                    placeholder="Title (required)"
+                    placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     />
-                    <input
+                    <textarea
+                    id="instructions"
+                    maxLength="2000"
                     type="text"
                     placeholder="Instructions (optional)"
                     value={instructions}
                     onChange={(e) => setInstructions(e.target.value)}
                     />
+
+                </form>
+                </div>
+            <div className="second-assignment-form">
+                <form id="second-form">
+                    <label>Points</label>
                     <input
+                    id="points-select"
                     type="number"
                     placeholder="Points"
                     value={points}
                     onChange={(e) => setPoints(e.target.value)}
                     required
                     />
+                    <label>Due</label>
                     <input
+                    id="date-select"
                     type="datetime-local"
                     placeholder="Due date"
                     value={dueDate}
                     onChange={(e) => setDueDate(e.target.value)}
                     required
                     />
+                    <label>Topic (optional)</label>
                     <input
+                    id="topic-select"
                     type="topic"
                     value={topic}
-                    placeholder="Topic (optional)"
+                    placeholder="No topic"
                     onChange={(e) => setTopic(e.target.value)}
                     />
-                    <button type="submit">{edit ? "Update Assignment" : "Create Assignment"}</button>
+                    <button onClick={handleSubmit}id="assign" type="submit">{edit ? "Update" : "Assign"}</button>
                 </form>
-            </div>
+                </div>
         </div>
 
 

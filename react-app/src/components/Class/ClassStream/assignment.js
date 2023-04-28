@@ -1,19 +1,38 @@
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux";
 import { useTeacher } from "./assignmentStream";
+import { useState } from "react";
+import { newSubmissionThunk } from "../../../store/submissions";
 import "./main.css";
 export default function AssignmentPage() {
+    const dispatch = useDispatch();
     const { classId, assignmentId } = useParams();
     const assignment = GetAssignment(classId, assignmentId)
     const class_ = GetClass(classId);
     const [isLoading, teacher] = useTeacher(classId);
-
+    const [theFiles, setTheFiles] = useState([]);
     const handleClick = (e) => {
         e.preventDefault();
         window.alert("Feature coming soon...");
+    }
+
+    const handleFileChange = (e) => {
+        const files = [...e.target.files];
+        const newFiles =  files.map(file => {
+            return {"name": file.name, "type": file.type, "size": file.size};
+        });
+        console.log('The files without modifying',files);
+
+        setTheFiles( [...theFiles, ...files])
+    }
+    console.log("the files", theFiles);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(newSubmissionThunk(theFiles, true, assignmentId));
     }
 
     return (
@@ -26,7 +45,9 @@ export default function AssignmentPage() {
                     <h1>{assignment.title}</h1>
                     <p id="creator-time"> {teacher.first_name} {teacher.last_name} | {assignment.created_at.slice(0, 17)} </p>
                     <p id="points">{assignment.points} points</p>
+                <div id="instructions-cont">
                 <p>{assignment.instructions}</p>
+                </div>
                 </div>
             </div>
             <div className="work-cont">
@@ -36,15 +57,21 @@ export default function AssignmentPage() {
                         <p> Assigned</p>
                     </div>
                     <div className="upload-work">
-                        <div onClick={(e) => handleClick(e)} id="add-work">
+                        {theFiles.map(file => (
+                            <span id="files" key={file.size}>{file.name}</span>
+                        ))}
+                        <form encType="multipart/form-data">
+                        <label style={{backgroundColor: theFiles.length > 3 ? "rgba(171, 173, 174, .4)": "", cursor: theFiles.length > 3? "not-allowed" : ""}}className="custom-upload">
                         <FontAwesomeIcon icon={faPlus} />
                         Add Work
+                        <input disabled={theFiles.length > 3} multiple onChange={(e) => handleFileChange(e)} type="file"></input>
+                        </label>
+                        </form>
                         </div>
-                        <div onClick={(e) => handleClick(e)} id="mark-done">Mark as done</div>
+                        {theFiles.length ? <div onClick={(e) => handleSubmit(e)}id="mark-done">Turn in</div>: <div onClick={(e) => handleClick(e)} id="mark-done">Mark as done</div> }
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 

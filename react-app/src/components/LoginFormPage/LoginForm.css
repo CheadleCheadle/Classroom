@@ -79,6 +79,7 @@
     flex-direction: row;
     justify-content: flex-start;
     width: 100%;
+    gap: 1em;
 }
 #create-account {
     display: flex;

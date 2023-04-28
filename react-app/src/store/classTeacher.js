@@ -8,6 +8,16 @@ const SET_CLASS_ID = "classes/SET_CLASS";
 const EDIT_CLASS = "class/edit";
 const SET_CLASS_IS_LOADED = "class/isLoaded";
 const DELETE_CLASS = "class/delete";
+const NEW_ANNOUNCEMENT = "announcement/new";
+
+const newAnnouncement = (announcement, classId) => {
+    return {
+        type: NEW_ANNOUNCEMENT,
+        announcement,
+        classId
+    }
+}
+
 
 const getClassesActionTeacher = (classes) => {
     return {
@@ -188,6 +198,20 @@ export const deleteAssignmentThunk = (assignmentId, classId) => async dispatch =
     }
 }
 
+export const newAnnouncementThunk = (announcement, classId) => async dispatch => {
+    const response = await fetch(`/api/announcements/${classId}/new`, {
+        method: "POST",
+        headers: {"Content-Type": "Application/json"},
+        body: JSON.stringify(announcement)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(newAnnouncement(data, classId));
+        return data;
+    }
+}
+
 
 const initialState = { classes: {}, singleClassId: null, classIsLoaded: false };
 
@@ -254,6 +278,15 @@ const teacherClassReducer = (state = initialState, action)  => {
             newState.classes[action.classId] = {...state.classes[action.classId]};
             newState.classes[action.classId].assignments = {...state.classes[action.classId].assignments};
             delete newState.classes[action.classId].assignments[action.assignmentId];
+            return newState;
+        }
+        case NEW_ANNOUNCEMENT: {
+            newState =  {
+                ...state,
+                classes: {...state.classes}
+            }
+            newState.classes[action.classId] = {...state.classes[action.classId]};
+            newState.classes[action.classId].announcements = {...state.classes[action.classId].announcements, [action.announcement.id]: {...action.announcement}}
             return newState;
         }
         default:

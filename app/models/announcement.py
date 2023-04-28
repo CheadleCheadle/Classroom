@@ -28,6 +28,6 @@ class Announcement(db.Model):
     def to_safe_dict(self):
         return {
             "id": self.id,
-            "announcement": self.annoucement,
+            "announcement": self.announcement,
             "created_at": self.created_at
         }

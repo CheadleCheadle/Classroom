@@ -40,7 +40,7 @@ def new_assignment(classId):
         join_params = {
             "assignment_id": new_assignment.id,
             "user_id": current_user.id,
-            "grade": None,
+
         }
 
         new_assignment_join = UserAssignment(**join_params)

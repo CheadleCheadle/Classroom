@@ -21,7 +21,9 @@ class Assignment(db.Model):
     # _class due to class being a reserved word
     _class = db.relationship("Class", back_populates="assignments")
     # creator = db.relationship('User', back_populates="created_assignments")
-
+    # submissions = db.relationship("Submission", secondary=UserSubmission.__table__, backref="assignments")
+    submissions = db.relationship("Submission", back_populates="assignment",
+                                   cascade="all, delete-orphan")
     # @property
     # def title(self):
     #     return self.title

@@ -25,3 +25,171 @@
     margin: 1.5em auto;
     width: 40%;
 }
+
+.new-assignment-cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #f8f9fa;
+    justify-content: space-between;
+}
+
+.first-assignment-form {
+    background-color: #fff;
+    width: 48%;
+    height: 20em;
+    margin-left: 20em;
+    margin-top: 1.5em;
+    border: 0.0625rem solid #e0e0e0;
+    border-radius: 8px;
+}
+#title {
+    background-color: #f8f9fa;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid rgba(0,0,0, .65);
+    height: 4em;
+    padding-left: 1em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 16px;
+    letter-spacing: .1px;
+    line-height: 24px;
+}
+
+#title:focus{
+    outline: none;
+    border-bottom: 2px solid rgb(25,103,210);
+}
+
+#title:hover {
+    background-color: rgba(60,64,67,0.05);
+}
+.first-assignment-form form {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    gap: 2em;
+}
+
+.second-assignment-form {
+    background-color: #fff;
+    width: 22em;
+    height: 100%;
+    border-left: 0.0625rem solid #e0e0e0;
+}
+
+.second-assignment-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+#second-form {
+    padding: 1.5em;
+}
+
+#second-form label {
+    margin: 0 0 0 0;
+    letter-spacing: .01785714em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: #5f6368;
+}
+
+#instructions  {
+    height: 10em;
+    background-color: #f8f9fa;
+    border-top: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0, .65);
+    padding-left: 1em;
+    padding-top: 1em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 16px;
+    letter-spacing: .1px;
+    line-height: 24px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#instructions:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(25,103,210);
+}
+
+#instructions:hover {
+    background-color: rgba(60,64,67,.05);
+}
+#points-select {
+    width: 8em;
+    height: 3em;
+    background-color: #f8f9fa;
+    border: none;
+    padding-left: 1em;
+    border-radius: 3px;
+    color: rgb(60,64,67);
+    font-size: .875rem;
+}
+
+#points-select:hover{
+    border-bottom: 1px solid rgb(25,103,210);
+    background-color: rgba(60,64,67,.1);
+}
+
+#date-select {
+    height: 3em;
+    background-color: #f8f9fa;
+    border: none;
+    padding-left: 1em;
+    border-radius: 3px;
+    color: rgb(60,64,67);
+    font-size: .875rem;
+    cursor: pointer;
+}
+#date-select:hover{
+    border-bottom: 1px solid rgb(25,103,210);
+    background-color: rgba(60,64,67,.1);
+}
+
+#topic-select {
+    height: 3em;
+    background-color: #f8f9fa;
+    border: none;
+    padding-left: 1em;
+    border-radius: 3px;
+    color: rgb(60,64,67);
+    font-size: .875rem;
+    cursor: pointer;
+}
+
+#topic-select:hover{
+    border-bottom: 1px solid rgb(25,103,210);
+    background-color: rgba(60,64,67,.1);
+}
+
+#assign {
+    width: 8em;
+    height: 3em;
+    background-color: rgb(25, 103, 210);
+    color: white;
+    border-radius: .5em;
+    border: none;
+    cursor: pointer;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 14px;
+    letter-spacing: .1px;
+    line-height: 24px;
+}
+
+#assign:hover {
+    border: 1px solid white;
+}
