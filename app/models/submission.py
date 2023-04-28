@@ -18,6 +18,14 @@ class Submission(db.Model):
     assignment = db.relationship("Assignment", back_populates="submissions")
     # files = db.relationship('File', secondary=submission_files, backref=db.backref('submissions', lazy='dynamic'))
     files = db.relationship('File', back_populates="submission")
+
+
+    def normalize(self, data):
+        normalized = {}
+        for value in (data):
+            normalized[value["id"]] = value
+        return normalized
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -25,4 +33,5 @@ class Submission(db.Model):
             "assignment_id": self.assignment_id,
             "grade": self.grade,
             "done": self.done,
+            "files": self.normalize([file.to_dict() for file in self.files])
         }

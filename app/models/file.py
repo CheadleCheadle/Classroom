@@ -18,5 +18,15 @@ class File(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String())
+    name = db.Column(db.String)
     submission_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("submissions.id")))
     submission = db.relationship('Submission', back_populates="files")
+
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "url": self.url,
+            "submission_id": self.submission_id
+        }

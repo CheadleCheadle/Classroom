@@ -1,0 +1,22 @@
+/* .grid-cont {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+    ". assignment assignment assignment assignment"
+    "user . . . ."
+    "user . . . .";
+}
+
+#user {
+    grid-area: user
+}
+
+#assignment {
+    grid-area: assignment
+} */
+
+.grade-table {
+    /* width: 100%; */
+    height: 100%;
+}
