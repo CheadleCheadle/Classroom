@@ -109,7 +109,7 @@ function EditGrade({class_, assignment, user}) {
         </div>
         :
         <div id="no-submission">
-            <p>No Subission</p>
+            <p>No Submission</p>
         </div>
         }
     </>

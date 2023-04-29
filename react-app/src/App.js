@@ -15,7 +15,6 @@ import NewAssignment from "./components/Class/Classwork/newAssignment";
 import JoinClass from "./components/Navigation/joinClass";
 import AssignmentPage from "./components/Class/ClassStream/assignment";
 import Grades from "./components/Class/Grades";
-
 function App() {
   const user = GetUser();
   const dispatch = useDispatch();
@@ -66,7 +65,10 @@ function App() {
             {!!user && <Route exact path="/class/:classId/grades">
             <Grades />
               </Route>}
-            {/* <Redirect to="/login"></Redirect> */}
+              {/* <Route>
+                "404": Not Found
+              </Route> */}
+              <Redirect to="/classes" />
         </Switch>
             </>
       )}
