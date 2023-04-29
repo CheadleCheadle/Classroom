@@ -72,7 +72,8 @@ function App() {
               {/* <Route>
                 "404": Not Found
               </Route> */}
-              <Redirect to="/classes" />
+              {!!user &&<Redirect to="/classes" /> }
+              <Redirect to="/" />
         </Switch>
             </>
       )}

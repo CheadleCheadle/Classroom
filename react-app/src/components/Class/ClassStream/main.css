@@ -35,6 +35,10 @@
     padding-left: 1.5rem;
 }
 
+.assignment-cont:hover {
+    background-color: rgba(60,64,67,0.1);
+}
+
 .assignment-info {
     display: flex;
     flex-direction: row;
@@ -95,6 +99,9 @@
     width: 80%;
     display: flex;
     flex-direction: row;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
 }
 
 .assignment-work-info {
@@ -153,6 +160,7 @@
 .work-cont {
     display: flex;
     flex-direction: column;
+    height: 8em;
     padding: 1.5rem;
     max-width: 18.75rem;
     width: 18.75rem;
@@ -336,6 +344,7 @@ input[type="file"] {
 }
 
 .assign-stats-cont {
+    height: 10em;
     width: 18.75rem;
     box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
     border-radius: 0.5rem;

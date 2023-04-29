@@ -23,7 +23,7 @@ function LoginFormPage() {
       history.replace("/classes");
     }
     if (data) {
-      setErrors(data);
+      setErrors(["Invalid Credentials"]);
     }
   };
 
@@ -39,12 +39,12 @@ function LoginFormPage() {
       <h2 id="signin">Sign in</h2>
       <p id="lnding-msg">Use your Google Account (not really 😄)</p>
       <div className="form-login">
-      <form onSubmit={handleSubmit}>
         <ul id="login-errors">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
+      <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={email}

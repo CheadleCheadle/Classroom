@@ -51,23 +51,27 @@ export default function NewClassModal({edit, class_}) {
             <input
              type="text"
              value={name}
+             maxlength="20"
              onChange={(e) => setName(e.target.value)}
              placeholder="Class name (required)" />
 
             <input
              type="text"
+             maxlength="20"
              value={section}
              onChange={(e) => setSection(e.target.value)}
              placeholder="Section (optional)" />
 
             <input
              type="text"
+             maxlength="30"
              value={subject}
              onChange={(e) => setSubject(e.target.value)}
              placeholder="Subject (optional)" />
 
             <input
              type="text"
+             maxlength="20"
              value={room}
              onChange={(e) => setRoom(e.target.value)}
              placeholder="Room (optional)" />

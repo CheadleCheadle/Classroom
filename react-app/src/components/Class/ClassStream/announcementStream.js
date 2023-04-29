@@ -20,10 +20,7 @@ export default function AnnouncementStream({announcements, classId}) {
                 </div>
                     <div className="assignment-details">
                         <div id="announcement-cont">
-                        <span>
-                            {teacher.first_name} { teacher.last_name}:
-                        </span>
-                        <span id="the-announcement">{announcement.announcement}</span>
+                        <span id="the-announcement">{teacher.first_name} {teacher.last_name}: {announcement.announcement}</span>
                         </div>
                         <span id="assignment-post-time">{dtFormat.format((new Date(announcement.created_at)))}</span>
                     </div>

@@ -22,8 +22,8 @@ function SignupFormPage() {
 
   useEffect(() => {
       const errors = {};
-    const valid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!email.match(valid)) {
+    const valid = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!email.match(valid) || !email.includes(".")) {
       errors.email="Invalid email address!";
     }
     if (username.length > 50) {
@@ -64,7 +64,9 @@ function SignupFormPage() {
         }
         if (data) {
           console.log( 'The data',data);
-          setErrors(data)
+          const tempError = {};
+          tempError.email = "Email address is already in use."
+          setErrors(tempError);
         }
     } else {
         // setErrors(['Confirm Password field must be the same as the Password field']);
@@ -99,9 +101,7 @@ function SignupFormPage() {
       <img id="goog-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"></img>
       <h1>Create your Account</h1>
       <form onSubmit={handleSubmit}>
-        {/* <ul id="login-errors">
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul> */}
+
 
           <input
             type="text"
