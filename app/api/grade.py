@@ -25,6 +25,7 @@ def new_submission(assignmentId):
 
     if form.validate_on_submit():
         files = form.files.data
+        print('--------------------------------------', files)
         # files = request.data
         # the_files = request.files.getlist(files)
         print("These are the files", files)
@@ -37,20 +38,20 @@ def new_submission(assignmentId):
         submission = Submission(**params)
         db.session.add(submission)
         db.session.commit()
+        if files[0] != 'undefined':
+            for file in files:
+                print("THIS IS THE FILE--------123123", file.filename)
+                old_file_name = file.filename
+                file.filename = get_unique_filename(file.filename)
+                upload = upload_file_to_s3(file)
+                print("HERE IS THE UPLOAD", upload)
+                if "url" not in upload:
+                    return {"errors": upload}
 
-        for file in files:
-            print("THIS IS THE FILE--------123123", file.filename)
-            old_file_name = file.filename
-            file.filename = get_unique_filename(file.filename)
-            upload = upload_file_to_s3(file)
-            print("HERE IS THE UPLOAD", upload)
-            if "url" not in upload:
-                return {"errors": upload}
-
-            file_dict = {"url": upload["url"], "name": old_file_name, "submission_id": submission.id}
-            new_file = File(**file_dict)
-            db.session.add(new_file)
-            db.session.commit()
+                file_dict = {"url": upload["url"], "name": old_file_name, "submission_id": submission.id}
+                new_file = File(**file_dict)
+                db.session.add(new_file)
+                db.session.commit()
 
 
         return submission.to_dict()

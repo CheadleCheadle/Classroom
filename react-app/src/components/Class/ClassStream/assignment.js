@@ -18,13 +18,10 @@ export default function AssignmentPage() {
     const class_ = GetClass(classId);
     const [grade, setGrade] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isDone, setIsDone] = useState(false);
     const [isLoading, teacher] = useTeacher(classId);
     const [theFiles, setTheFiles] = useState([]);
     const [submission, setTheSubmission] = useState({});
-    const handleClick = (e) => {
-        e.preventDefault();
-        window.alert("Feature coming soon...");
-    }
 
     // So if the assignment already has some submissions we try to find ours.
     // If we do, we set the current submission to our submission
@@ -76,11 +73,8 @@ export default function AssignmentPage() {
             return (
                  <div onClick={(e) => handleSubmit(e)}id="mark-done">Turn in</div>
             )
-            }else if(!submission.done) {
-            return (
-                 <div onClick={(e) => handleClick(e)} id="mark-done">Mark as done</div>
-            )
-            } else {
+            }
+            else {
                 return null;
             }
 
@@ -111,7 +105,7 @@ export default function AssignmentPage() {
                         {theFiles.map(file => (
                             <span id="files" key={file.size}>{file.name}</span>
                         ))}
-                        {!theFiles.length ? <form encType="multipart/form-data">
+                    {!theFiles.length ? <form encType="multipart/form-data">
                         <label style={{backgroundColor: theFiles.length > 3 ? "rgba(171, 173, 174, .4)": "", cursor: theFiles.length > 3? "not-allowed" : ""}}className="custom-upload">
                         <FontAwesomeIcon icon={faPlus} />
                         Add Work

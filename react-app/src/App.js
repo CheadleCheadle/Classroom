@@ -15,6 +15,7 @@ import NewAssignment from "./components/Class/Classwork/newAssignment";
 import JoinClass from "./components/Navigation/joinClass";
 import AssignmentPage from "./components/Class/ClassStream/assignment";
 import Grades from "./components/Class/Grades";
+import TeacherAssignment from "./components/Class/ClassStream/teacherAssignment";
 function App() {
   const user = GetUser();
   const dispatch = useDispatch();
@@ -59,6 +60,9 @@ function App() {
             {!!user && <Route path="/classes/join">
               <JoinClass />
             </Route>}
+            {!!user && <Route exact path="/classes/:classId/assignments/:assignmentId/teacher">
+              <TeacherAssignment />
+              </Route>}
             {!!user && <Route exact path="/classes/:classId/assignments/:assignmentId">
               <AssignmentPage />
             </Route>}
