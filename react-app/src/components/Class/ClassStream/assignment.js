@@ -25,14 +25,27 @@ export default function AssignmentPage() {
         e.preventDefault();
         window.alert("Feature coming soon...");
     }
+
+    // So if the assignment already has some submissions we try to find ours.
+    // If we do, we set the current submission to our submission
+
     // if (Object.values(assignment.submissions).length) {
     //  const tempSub= FindSubmission(assignment, user.id);
     //  setTheSubmission(tempSub);
     // }
+
+    // On load if the assignment has submissions and the submission
+    // has files, we set the current files with the submissions files.
     useEffect(() => {
-        console.log(assignment, submission);
-        if (Object.values(assignment.submissions).length && Object.values(submission.files).length) {
-        setTheFiles([...theFiles, ...Object.values(submission.files)]);
+        if (Object.values(assignment?.submissions).length) {
+            const tempSub = FindSubmission(assignment, user.id);
+            console.log("Temp sub", tempSub);
+            setTheSubmission(tempSub);
+            if (tempSub.files) {
+            if (Object.values(tempSub.files).length) {
+            setTheFiles([...theFiles, ...Object.values(tempSub.files)]);
+            }
+        }
         }
     }, [])
 

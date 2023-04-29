@@ -14,36 +14,21 @@ export default function ClassNavigation() {
         <>
         <NavLink
           to={`/class/${classId}`}
-          className={({ isActive}) =>
-             isActive ? "active" : "pending"
-          }
+          className={({ isActive }) => (isActive ? "active" : "pending")}
         >
         Stream
         </NavLink>
 
         <NavLink
           to={`/class/${classId}/classwork`}
-          className={({ isActive, isPending}) =>
-            isPending ? "pending" : "isActive" ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "pending")}
         >
         Classwork
         </NavLink>
 
-        <NavLink
-          to="/classes"
-          className={({ isActive, isPending}) =>
-            isPending ? "pending" : "isActive" ? "active" : ""
-          }
-        >
-        People
-        </NavLink>
-
         { isOwner ? <NavLink
           to={`/class/${classId}/grades`}
-          className={({ isActive, isPending}) =>
-            isPending ? "pending" : "isActive" ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "pending")}
         >
         Grades
         </NavLink> : null}

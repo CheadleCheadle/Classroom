@@ -8,7 +8,7 @@ import "./main.css";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { newGradeThunk } from "../../../store/classTeacher";
-
+import GradeOptions from "./gradeOptions";
 
 export default function Grades() {
     const { classId } = useParams();
@@ -27,22 +27,32 @@ export default function Grades() {
         <div className="grid-cont">
             <>
             <table className="grade-table">
-            <tr>
-                <td>
-                    name
+            <tr className="assignment-row">
+                <td id="name-cont">
                 </td>
                 {assignments.map((assignment) => (
-                    <td key={assignment.id}>{assignment.title}</td>
+                    <td id="grade-assignment-cont" key={assignment.id}>
+                        <div id="assignment-grade-details">
+                            <p>Due {assignment.due_date.slice(0,12)}</p>
+                            <div id="assignment-title-cont"><h5>{assignment.title}</h5></div>
+                            <p id="outof-points">out of {assignment.points}</p>
+                        </div>
+                    </td>
 
                 ))}
 
             </tr>
             {filteredUsers.map((user) => (
-                <tr key={user.id} id="user">
-                     <td>{user.first_name}</td>
+                <tr className={user.id % 2 === 0 ? "grade-row" : "grade-row-diff"} key={user.id} id="user">
+                     <td id="user-cont">
+                        <div className="user-cont-grade">
+                            <img id="user-pfp" src={user.pfp}></img>
+                            <h4>{user.first_name} {user.last_name}</h4>
+                        </div>
+                     </td>
                     {assignments.map((secondAssignment) => (
-                        <td key={secondAssignment.id}>
-                            <div>
+                        <td id="grade-cont" key={secondAssignment.id}>
+                            <div className="edit-grade">
                             <EditGrade class_={class_} user={user} assignment={secondAssignment} />
                             </div>
                         </td>
@@ -79,20 +89,27 @@ function EditGrade({class_, assignment, user}) {
     return (
         <>
         { Object.values(sub).length ?
-        <div>
+        <div id="edit-grade-cont">
+        <div id="display-grade">
         <input
+        type="number"
         value={grade}
         onChange={(e) => setGrade(e.target.value)}
-        placeholder={assignment.title}
+        max={assignment.points}
+        min="0"
         >
         </input>
-        <button onClick={(e) => handleChange(e)}>Grade</button>
         <span>{Math.trunc(sub.grade)}/{assignment.points}</span>
-        <FontAwesomeIcon icon={faEllipsisVertical} />
+        </div>
+        <div id="button-cont-grade">
+        <button onClick={(e) => handleChange(e)}>Grade</button>
+        {/* <FontAwesomeIcon icon={faEllipsisVertical} /> */}
+        <GradeOptions submission={sub} />
+        </div>
         </div>
         :
-        <div>
-            <p>No sub</p>
+        <div id="no-submission">
+            <p>No Subission</p>
         </div>
         }
     </>

@@ -1,22 +1,209 @@
-/* .grid-cont {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-template-areas:
-    ". assignment assignment assignment assignment"
-    "user . . . ."
-    "user . . . .";
+#setting-grade {
+    cursor: pointer;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    text-align: center;
 }
 
-#user {
-    grid-area: user
+#setting-grade:hover {
+    background-color: rgba(0,0,0,.1);
 }
-
-#assignment {
-    grid-area: assignment
-} */
 
 .grade-table {
-    /* width: 100%; */
+    width: 100%;
     height: 100%;
+}
+
+#grade-assignment-cont {
+    width: 8em;
+    border-right: 0.0625rem solid #dadce0;
+}
+
+#grade-cont {
+
+    border-right: 0.0625rem solid #dadce0;
+    width: 8em;
+}
+
+#grade-cont input {
+    width: 2em;
+}
+
+.assignment-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 6em;
+    border-bottom: 0.0625rem solid #dadce0;
+}
+
+.grade-row {
+    width: 100%;
+    height: 4em;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(248, 249, 250, 1);
+    border-bottom: 0.0625rem solid #dadce0;
+}
+
+.grade-row-diff {
+    width: 100%;
+    height: 4em;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    border-bottom: 0.0625rem solid #dadce0;
+}
+
+#user-cont {
+    width: 15em;
+    border-right: 0.0625rem solid #dadce0;
+}
+
+
+#name-cont {
+    width: 15em;
+    border-right: 0.0625rem solid #dadce0;
+}
+
+#assignment-grade-details {
+    display: flex;
+    flex-direction: column;
+    max-height: 6em;
+    margin: 0.25em;
+}
+
+#assignment-grade-details p{
+margin: 0.5em 0 0 0;
+letter-spacing: .025em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1rem;
+    color: #5f6368;
+}
+
+
+#assignment-grade-details h5 {
+    margin: 0 0 0 0;
+    max-width: 100%;
+    color: #333;
+    letter-spacing: .01785714em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+#assignment-title-cont {
+    padding-top: .25em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+#outof-points {
+    padding-top: .25em;
+    border-top: 0.0625rem solid #dadce0;
+}
+
+#edit-grade-cont {
+    display: flex;
+    flex-direction: column;
+    padding: .5em;
+}
+
+#edit-grade-cont button {
+    border: none;
+    background-color:#1a73e8;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+#button-cont-grade {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5rem;
+}
+#display-grade {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    letter-spacing: .01785714em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+#display-grade input {
+    border: none;
+    background-color: #fff;
+    width: 35%;
+    border-radius: 3px;
+    letter-spacing: .01785714em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+#no-submission {
+    letter-spacing: .01785714em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-grade {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.user-cont-grade {
+    margin-top: .4em;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.user-cont-grade h4 {
+    margin: 0 0 0 0;
+    letter-spacing: .01785714em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: #3c4043;
+}
+
+.grade-options-cont {
+    position: absolute;
+    background-color: #fff;
+    transform-origin: left top;
+    width: 4em;
+    height: 2em;
+    margin-left: 2.5em;
+    margin-top:1.8em;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 1rem;
+    letter-spacing: .00625em;
+    font-weight: 400;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    padding: .5em;
+}
+
+#download-button {
+    width: 6em;
+    height: 2.5em;
 }

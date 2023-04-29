@@ -5,11 +5,13 @@
     align-items: center;
     height: 48px;
     width: 7em;
-    background-color: #c26401;
+    background-color: #1a73e8;
     color: #fff;
     gap: .5em;
     border-radius: 99px;
     cursor: pointer;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-weight: 500;
 
 }
 
