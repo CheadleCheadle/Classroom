@@ -17,17 +17,20 @@ export default function AssignmentPage() {
     const user = GetUser();
     const class_ = GetClass(classId);
     const [grade, setGrade] = useState(null);
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, teacher] = useTeacher(classId);
     const [theFiles, setTheFiles] = useState([]);
+    const [submission, setTheSubmission] = useState({});
     const handleClick = (e) => {
         e.preventDefault();
         window.alert("Feature coming soon...");
     }
-    let submission = {};
-    if (Object.values(assignment.submissions).length) {
-     submission = FindSubmission(assignment, user.id);
-    }
+    // if (Object.values(assignment.submissions).length) {
+    //  const tempSub= FindSubmission(assignment, user.id);
+    //  setTheSubmission(tempSub);
+    // }
     useEffect(() => {
+        console.log(assignment, submission);
         if (Object.values(assignment.submissions).length && Object.values(submission.files).length) {
         setTheFiles([...theFiles, ...Object.values(submission.files)]);
         }
@@ -39,18 +42,35 @@ export default function AssignmentPage() {
         const newFiles =  files.map(file => {
             return {"name": file.name, "type": file.type, "size": file.size};
         });
-        console.log('The files without modifying',files);
 
         setTheFiles( [...theFiles, ...files])
     }
-    console.log("the files", theFiles);
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const submission = dispatch(newSubmissionThunk(theFiles, true, assignmentId))
+        dispatch(newSubmissionThunk(theFiles, true, assignmentId))
         .then((d) => {
             console.log("The submission", d);
-            submission.grade = d.grade;
+            setTheSubmission(d);
+            setIsSubmitted(true)
         } );
+    }
+
+    const HandleDisplaySubmit = () => {
+        console.log("is submitted", isSubmitted, submission);
+        if (theFiles.length && !submission.done) {
+            return (
+                 <div onClick={(e) => handleSubmit(e)}id="mark-done">Turn in</div>
+            )
+            }else if(!submission.done) {
+            return (
+                 <div onClick={(e) => handleClick(e)} id="mark-done">Mark as done</div>
+            )
+            } else {
+                return null;
+            }
+
     }
 
     return (
@@ -82,11 +102,11 @@ export default function AssignmentPage() {
                         <label style={{backgroundColor: theFiles.length > 3 ? "rgba(171, 173, 174, .4)": "", cursor: theFiles.length > 3? "not-allowed" : ""}}className="custom-upload">
                         <FontAwesomeIcon icon={faPlus} />
                         Add Work
-                        <input disabled={theFiles.length > 3} multiple onChange={(e) => handleFileChange(e)} type="file"></input>
+                        <input disabled={theFiles.length > 3} onChange={(e) => handleFileChange(e)} type="file"></input>
                         </label>
                         </form> : null}
                         </div>
-                         {theFiles.length && !submission.done? <div onClick={(e) => handleSubmit(e)}id="mark-done">Turn in</div>: !submission.done ?  <div onClick={(e) => handleClick(e)} id="mark-done">Mark as done</div> : null}
+                        <HandleDisplaySubmit />
                     </div>
                 </div>
             </div>
