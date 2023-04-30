@@ -22,7 +22,12 @@ export default function ClassWork() {
             <span>Create</span>
         </div>
         </div>}
-        <AssignmentStream assignments={class_.assignments} classId={classId}/>
+        {Object.values(class_.assignments).length ? <AssignmentStream assignments={class_.assignments} classId={classId}/> :
+        <div id="no-assignments-display">
+            <span id="no-assignments-msg">This is where work will be assigned</span>
+            <img src="https://img.icons8.com/?size=512&id=113861&format=png"></img>
+        </div>
+        }
         </div>
     )
 }
