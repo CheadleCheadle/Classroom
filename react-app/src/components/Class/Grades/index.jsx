@@ -17,11 +17,11 @@ export default function Grades() {
     const user = GetUser();
     const [grade, setGrade] = useState(0);
     const [isLoading, teacher] = useTeacher(classId);
-    if (isLoading && teacher.id === user.id) {
+    const assignments = Object.values(class_.assignments);
+    if (isLoading && teacher.id === user.id && assignments.length) {
         //remove user with id of teacher from users
         const filteredUsers = users.filter(user => user.id !== teacher.id);
 
-    const assignments = Object.values(class_.assignments);
     console.log("Here are the assignments", assignments);
     return (
         <div className="grid-cont">
@@ -68,10 +68,17 @@ export default function Grades() {
 
             </>
         </div>
+
     )
 
 } else {
-    return null;
+    return (
+        <div id="no-assignments">
+            <span>This is where you will view and grade assignment submissions</span>
+        <img src="https://img.icons8.com/?size=512&id=vRprj2QN0E5Y&format=png">
+        </img>
+        </div>
+    )
 }
 
 }

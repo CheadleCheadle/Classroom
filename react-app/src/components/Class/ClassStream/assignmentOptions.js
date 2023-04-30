@@ -7,6 +7,7 @@ import "./main.css";
 import OpenModalButton from "../../OpenModalButton";
 import { deleteAssignmentThunk } from "../../../store/classTeacher";
 import { useIsOwner } from "../../AllClasses/classOptions";
+import { useModal } from "../../../context/Modal";
 export default function AssignmentOptions({classId, assignment}) {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -68,23 +69,26 @@ export default function AssignmentOptions({classId, assignment}) {
 
 export function DeleteAssignment({classId, assignmentId}) {
     const history = useHistory();
+    const {closeModal} = useModal()
     const dispatch = useDispatch();
     const handleDelete = () => {
         dispatch(deleteAssignmentThunk(assignmentId, classId));
+        closeModal();
         history.replace(`/class/${classId}`);
     }
 
     return (
-        <div>
-        <h2>Delete Assignment</h2>
-        <div>
-            <button onClick={() => handleDelete()}>
-                Yes (Delete)
+        <div className="delete-assignment">
+        <h4>Delete assignment?</h4>
+        <p>Grades will also be deleted</p>
+        <div id="delete-assignment-buttons">
+            <button id="delete-assignment" onClick={() => closeModal()}>
+                Cancel
+            </button>
+            <button id="cancel-delete" onClick={() => handleDelete()}>
+                Delete
             </button>
 
-            <button>
-                No (Keep)
-            </button>
         </div>
         </div>
     )

@@ -1,5 +1,54 @@
 .profile-dropdown {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: .25em;
+  padding: .5em;
+  list-style: none;
+  width: 8em;
+  height: 5em;
+  margin-top: 2.9em;
+  margin-right: 5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 2px 6px 2px rgba(60, 64, 67, .15);
+}
+
+.profile-dropdown h4 {
+  margin: .5em 0 0 0;
+  color: #5f6368;
+  font-family: "Product Sans", Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.profile-dropdown p {
+  margin: 0 0 0 0;
+  letter-spacing: .01785714em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+#logout-cont {
+  display: flex;
+}
+
+#logout-cont button {
+  border: none;
+  background-color: #1a73e8;
+  color: white;
+  width: 5em;
+  height: 2em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#logout-cont button:hover {
+  transition-duration: 500ms;
+  background-color: #185abc;
 }
 
 .hidden {
@@ -46,32 +95,68 @@
   fill: gray;
   text-decoration: none;
   letter-spacing: .01785714em;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
 }
+
 .active {
   color: #1a73e8;
   fill: #1a73e8;
   text-decoration: none;
   letter-spacing: .01785714em;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
 }
 
 #join-class-link {
-  text-decoration: none;
-  text-align: center;
-  color: #1a73e8;
-  font-family: "Google Sans", Roboto, Arial, sans-serif;
-  font-weight: 500;
-  font-size: 14px;
+  font-family: Roboto, Arial, sans-serif;
+  color: black;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  letter-spacing: .00625em;
+  font-weight: 400;
   background-color: #fff;
   border: none;
   width: 8em;
   height: 2.5em;
   cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#join-class-link:hover {
+transition-duration: 500ms;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.join-create {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 5em;
+  margin-top: 2.5em;
+  margin-right: 5em;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 2px 6px 2px rgba(60, 64, 67, .15);
+}
+
+#add-icon {
+  height: 1.2em;
+  width: 1.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#add-icon:hover {
+  transition-duration: 500ms;
+  background-color: rgba(0, 0, 0, .1);
 }

@@ -64,7 +64,8 @@
     font-size: 1.25em;
     font-weight: 500;
     line-height: 2.75rem;
-    color: black;
+    color: #fff;
+    letter-spacing: .02cm;
     display: flex;
     flex-direction: column;
     gap: 0em;
@@ -72,6 +73,7 @@
 
 .class-details h2 {
     margin: 0em 0em 0rem 1rem;
+
 }
 
 .class-details h4 {
