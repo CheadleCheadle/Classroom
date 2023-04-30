@@ -84,6 +84,9 @@
     flex-direction: row;
     max-height: 100%;
     justify-content: space-between;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
 }
 #settings-icon {
     margin: 1em 1em 1em 1em;

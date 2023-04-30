@@ -27,7 +27,11 @@ class Assignment(db.Model):
     # @property
     # def title(self):
     #     return self.title
-
+    def normalize(self, data):
+        normalized = {}
+        for value in (data):
+            normalized[value["id"]] = value
+        return normalized
     # @title.setter
     # def title(self, title):
     #     self.title = title
@@ -95,7 +99,8 @@ class Assignment(db.Model):
             "topic": self.topic,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "title": self.title
+            "title": self.title,
+            "submissions": self.normalize([submission.to_dict() for submission in self.submissions])
             }
 
     def to_safe_dict(self):
@@ -108,5 +113,6 @@ class Assignment(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "class_name": self._class.name,
-            "title": self.title
+            "title": self.title,
+            "submissions": self.normalize([submission.to_dict() for submission in self.submissions])
         }

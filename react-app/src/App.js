@@ -14,7 +14,9 @@ import ClassWork from "./components/Class/Classwork";
 import NewAssignment from "./components/Class/Classwork/newAssignment";
 import JoinClass from "./components/Navigation/joinClass";
 import AssignmentPage from "./components/Class/ClassStream/assignment";
-
+import Grades from "./components/Class/Grades";
+import TeacherAssignment from "./components/Class/ClassStream/teacherAssignment";
+import LandingPage from "./components/LandingPage";
 function App() {
   const user = GetUser();
   const dispatch = useDispatch();
@@ -27,7 +29,10 @@ function App() {
   return (
     <>
         <Switch>
-          <Route  exact path="/" >
+          <Route exact path="/">
+        <LandingPage />
+          </Route>
+          <Route  exact path="/login" >
             <LoginFormPage />
           </Route>
 
@@ -59,10 +64,20 @@ function App() {
             {!!user && <Route path="/classes/join">
               <JoinClass />
             </Route>}
+            {!!user && <Route exact path="/classes/:classId/assignments/:assignmentId/teacher">
+              <TeacherAssignment />
+              </Route>}
             {!!user && <Route exact path="/classes/:classId/assignments/:assignmentId">
               <AssignmentPage />
             </Route>}
-            {/* <Redirect to="/login"></Redirect> */}
+            {!!user && <Route exact path="/class/:classId/grades">
+            <Grades />
+              </Route>}
+              {/* <Route>
+                "404": Not Found
+              </Route> */}
+              {!!user &&<Redirect to="/classes" /> }
+              <Redirect to="/" />
         </Switch>
             </>
       )}

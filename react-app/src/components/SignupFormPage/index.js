@@ -22,8 +22,8 @@ function SignupFormPage() {
 
   useEffect(() => {
       const errors = {};
-    const valid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!email.match(valid)) {
+    const valid = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!email.match(valid) || !email.includes(".")) {
       errors.email="Invalid email address!";
     }
     if (username.length > 50) {
@@ -64,7 +64,9 @@ function SignupFormPage() {
         }
         if (data) {
           console.log( 'The data',data);
-          setErrors(data)
+          const tempError = {};
+          tempError.email = "Email address is already in use."
+          setErrors(tempError);
         }
     } else {
         // setErrors(['Confirm Password field must be the same as the Password field']);
@@ -99,13 +101,12 @@ function SignupFormPage() {
       <img id="goog-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"></img>
       <h1>Create your Account</h1>
       <form onSubmit={handleSubmit}>
-        {/* <ul id="login-errors">
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul> */}
+
 
           <input
             type="text"
             value={email}
+            maxLength={30}
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="Email"
@@ -116,6 +117,7 @@ function SignupFormPage() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            maxLength={25}
             placeholder="Username"
             />
             {submitted && errors.username ? <p id="login-error">{errors.username}</p> : null}
@@ -124,6 +126,7 @@ function SignupFormPage() {
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
             required
+            maxLength="25"
             placeholder="Firstname"
             />
             {submitted && errors.firstname ? <p id="login-error">{errors.firstname}</p> : null}
@@ -132,6 +135,7 @@ function SignupFormPage() {
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
             required
+            maxLength={35}
             placeholder="Lastname"
             />
             {submitted && errors.lastname ? <p id="login-error">{errors.lastname}</p> : null}
@@ -140,6 +144,7 @@ function SignupFormPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            maxLength={100}
             placeholder="Password"
             />
             {submitted && errors.password ? <p id="login-error">{errors.password}</p> : null}
@@ -148,11 +153,12 @@ function SignupFormPage() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            maxLength={100}
             placeholder="Confirm Password"
             />
             {submitted && errors.confirmation ? <p id="login-error">{errors.confirmation}</p> : null}
         <div className="signup-buttons">
-        <button id="login-instead" onClick={() => history.push('/')}>Sign in instead</button>
+        <button id="login-instead" onClick={() => history.push('/login')}>Sign in instead</button>
         <button id="signup"type="submit">Sign Up</button>
         </div>
       </form>

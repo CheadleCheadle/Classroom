@@ -14,7 +14,23 @@ export default function ClassPage() {
     const { classId } = useParams()
     const [isLoading, teacher] = useTeacher(classId);
     const class_ = useClassDetails(classId);
-
+    const HandleNothing = () => {
+        if (!Object.values(class_.announcements).length && !Object.values(class_.assignments).length) {
+            return (
+            <div id="landing-class">
+                <h3>This is where you can talk to your class</h3>
+                <p>Use the stream to share announcements and post assignments.</p>
+            </div>
+            )
+        } else {
+            return (
+                <>
+                <AnnouncementStream announcements={class_.announcements} classId={classId} />
+                <AssignmentStream assignments={class_.assignments} announcements={class_.announcements}classId={classId}/>
+                </>
+            )
+        }
+    }
     return ( isLoading &&
         <div className="cls-details-cont">
         <div className="cls-detail-pg">
@@ -22,13 +38,12 @@ export default function ClassPage() {
         </div>
         <div className="cls-details">
             <div id="code-work">
-                <ClassCode class_={class_} />
+                {teacher.id === user.id ? <ClassCode class_={class_}/> : null}
                 <UpcomingWork classId={classId}/>
             </div>
             <div className="announcements-cont">
             { teacher.id === user.id ? <NewAnnouncement classId={classId} user={user}/>: null}
-            <AnnouncementStream announcements={class_.announcements} classId={classId} />
-            <AssignmentStream assignments={class_.assignments} announcements={class_.announcements}classId={classId}/>
+            <HandleNothing />
             </div>
         </div>
         </div>

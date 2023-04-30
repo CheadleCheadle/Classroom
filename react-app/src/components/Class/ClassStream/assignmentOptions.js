@@ -48,7 +48,7 @@ export default function AssignmentOptions({classId, assignment}) {
     <div className={dropClassName}>
 
         <div>
-            <button onClick={(e) => handleEdit(e)}>
+            <button id="create-class"onClick={(e) => handleEdit(e)}>
                 Edit
             </button>
             <OpenModalButton

@@ -6,8 +6,10 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./main.css";
 import { useEffect } from "react";
 import AssignmentOptions from "./assignmentOptions";
+import GetUser from "../../utils/getUser";
 export default function AssignmentStream({ assignments, classId, announcements}) {
     const history = useHistory();
+    const user = GetUser();
         if (Object.values(assignments).length) {
         assignments = Object.values(assignments);
         } else {
@@ -17,7 +19,13 @@ export default function AssignmentStream({ assignments, classId, announcements})
         const [isLoading, teacher] = useTeacher(classId);
         const handleClick = (assignmentId) => {
             console.log("here is the assignment Id", assignmentId);
-            history.push(`/classes/${classId}/assignments/${assignmentId}`);
+            if (user.id === teacher.id) {
+                console.log("hey m123");
+                history.push(`/classes/${classId}/assignments/${assignmentId}/teacher`);
+            } else {
+
+                history.push(`/classes/${classId}/assignments/${assignmentId}`);
+            }
         }
 
     return (

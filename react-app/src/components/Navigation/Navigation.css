@@ -34,33 +34,44 @@
 }
 
 .cls-nav {
-    display: flex;
-    gap: 1em;
+  display: flex;
+  gap: 1em;
+  align-items: center;
 }
 
 
-.active {
-  color: rgb(194,100,1);
-  fill: rgb(194,100,1);
-  text-decoration: none;
-}
 
 .pending {
   color: gray;
   fill: gray;
   text-decoration: none;
+  letter-spacing: .01785714em;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+.active {
+  color: #1a73e8;
+  fill: #1a73e8;
+  text-decoration: none;
+  letter-spacing: .01785714em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
 }
 
 #join-class-link {
   text-decoration: none;
   text-align: center;
-    color: #1a73e8;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    background-color: #fff;
-    border: none;
-    width: 8em;
-    height: 2.5em;
-    cursor: pointer;
+  color: #1a73e8;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: #fff;
+  border: none;
+  width: 8em;
+  height: 2.5em;
+  cursor: pointer;
 }

@@ -16,7 +16,8 @@ export default function JoinClass() {
             setErrors(data.errors);
         } else {
         console.log("should be the class", data);
-        history.push(`/class/${data.id}`)
+        // history.push(`/class/${data.id}`)
+        history.push('/classes');
         }
     }
     return (

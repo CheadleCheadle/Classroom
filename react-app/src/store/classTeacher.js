@@ -9,7 +9,17 @@ const EDIT_CLASS = "class/edit";
 const SET_CLASS_IS_LOADED = "class/isLoaded";
 const DELETE_CLASS = "class/delete";
 const NEW_ANNOUNCEMENT = "announcement/new";
+const NEW_GRADE = "grade/new";
 
+const newGrade = (classId, assignmentId, submissionId, grade) => {
+    return {
+        type: NEW_GRADE,
+        assignmentId,
+        submissionId,
+        classId,
+        grade
+    }
+}
 const newAnnouncement = (announcement, classId) => {
     return {
         type: NEW_ANNOUNCEMENT,
@@ -212,6 +222,20 @@ export const newAnnouncementThunk = (announcement, classId) => async dispatch =>
     }
 }
 
+export const newGradeThunk = (classId, assignmentId, submissionId, grade) => async dispatch => {
+    const response = await fetch(`/api/grades/submission/${submissionId}/edit`, {
+        method: "PUT",
+        headers: {"Content-Type": "Application/json"},
+        body: JSON.stringify(grade)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(newGrade(classId, assignmentId, submissionId, data));
+        return data;
+    }
+}
+
 
 const initialState = { classes: {}, singleClassId: null, classIsLoaded: false };
 
@@ -287,6 +311,20 @@ const teacherClassReducer = (state = initialState, action)  => {
             }
             newState.classes[action.classId] = {...state.classes[action.classId]};
             newState.classes[action.classId].announcements = {...state.classes[action.classId].announcements, [action.announcement.id]: {...action.announcement}}
+            return newState;
+        }
+        case NEW_GRADE: {
+            newState = {
+                ...state,
+                classes: {...state.classes}
+            }
+            console.log('ACTIOn',action)
+            newState.classes[action.classId] = {...state.classes[action.classId]};
+            newState.classes[action.classId].assignments = {...state.classes[action.classId].assignments};
+            newState.classes[action.classId].assignments[action.assignmentId] = {...state.classes[action.classId].assignments[action.assignmentId]};
+            newState.classes[action.classId].assignments[action.assignmentId].submissions = {...state.classes[action.classId].assignments[action.assignmentId].submissions};
+            newState.classes[action.classId].assignments[action.assignmentId].submissions[action.submissionId] = {...state.classes[action.classId].assignments[action.assignmentId].submissions[action.submissionId]};
+            newState.classes[action.classId].assignments[action.assignmentId].submissions[action.submissionId] = action.grade;
             return newState;
         }
         default:

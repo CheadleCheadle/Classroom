@@ -11,7 +11,7 @@ export default function NewAssignment({edit}) {
     const [title, setTitle] = useState('');
     const [instructions, setInstructions] = useState('');
     const [points, setPoints] = useState(100);
-    const [dueDate, setDueDate] = useState('');
+    const [dueDate, setDueDate] = useState("");
     const [topic, setTopic] = useState('');
     const { classId, assignmentId } = useParams()
     console.log("Here are the classId and assignment Id", classId, assignmentId)
@@ -34,6 +34,12 @@ export default function NewAssignment({edit}) {
         }
     }
 
+    const handlePreventSubmit = () => {
+        if (title === '') return true;
+        if (points < 0 || points === "") return true;
+        if (dueDate === "") return true;
+    }
+
     useEffect(() => {
         if (edit) {
            setTitle(assignment.title);
@@ -52,6 +58,7 @@ export default function NewAssignment({edit}) {
                     <input
                     id="title"
                     type="text"
+                    maxLength="40"
                     placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -96,7 +103,7 @@ export default function NewAssignment({edit}) {
                     placeholder="No topic"
                     onChange={(e) => setTopic(e.target.value)}
                     />
-                    <button onClick={handleSubmit}id="assign" type="submit">{edit ? "Update" : "Assign"}</button>
+                    <button disabled={handlePreventSubmit()} style={{ backgroundColor: handlePreventSubmit() ? "gray" : "", cursor: handlePreventSubmit() ? "not-allowed" : ""}}onClick={handleSubmit}id="assign" type="submit">{edit ? "Update" : "Assign"}</button>
                 </form>
                 </div>
         </div>

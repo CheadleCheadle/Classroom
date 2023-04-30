@@ -51,6 +51,10 @@
 
 #login-errors {
     color: red;
+    padding-left: 0;
+    list-style-type: none;
+    font-weight: 400;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
 }
 
 #lnding-msg {
