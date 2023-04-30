@@ -16,6 +16,7 @@ import JoinClass from "./components/Navigation/joinClass";
 import AssignmentPage from "./components/Class/ClassStream/assignment";
 import Grades from "./components/Class/Grades";
 import TeacherAssignment from "./components/Class/ClassStream/teacherAssignment";
+import LandingPage from "./components/LandingPage";
 function App() {
   const user = GetUser();
   const dispatch = useDispatch();
@@ -28,7 +29,10 @@ function App() {
   return (
     <>
         <Switch>
-          <Route  exact path="/" >
+          <Route exact path="/">
+        <LandingPage />
+          </Route>
+          <Route  exact path="/login" >
             <LoginFormPage />
           </Route>
 

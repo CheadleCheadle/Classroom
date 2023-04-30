@@ -106,6 +106,7 @@ function SignupFormPage() {
           <input
             type="text"
             value={email}
+            maxLength={30}
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="Email"
@@ -116,6 +117,7 @@ function SignupFormPage() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            maxLength={25}
             placeholder="Username"
             />
             {submitted && errors.username ? <p id="login-error">{errors.username}</p> : null}
@@ -124,6 +126,7 @@ function SignupFormPage() {
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
             required
+            maxLength="25"
             placeholder="Firstname"
             />
             {submitted && errors.firstname ? <p id="login-error">{errors.firstname}</p> : null}
@@ -132,6 +135,7 @@ function SignupFormPage() {
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
             required
+            maxLength={35}
             placeholder="Lastname"
             />
             {submitted && errors.lastname ? <p id="login-error">{errors.lastname}</p> : null}
@@ -140,6 +144,7 @@ function SignupFormPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            maxLength={100}
             placeholder="Password"
             />
             {submitted && errors.password ? <p id="login-error">{errors.password}</p> : null}
@@ -148,11 +153,12 @@ function SignupFormPage() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            maxLength={100}
             placeholder="Confirm Password"
             />
             {submitted && errors.confirmation ? <p id="login-error">{errors.confirmation}</p> : null}
         <div className="signup-buttons">
-        <button id="login-instead" onClick={() => history.push('/')}>Sign in instead</button>
+        <button id="login-instead" onClick={() => history.push('/login')}>Sign in instead</button>
         <button id="signup"type="submit">Sign Up</button>
         </div>
       </form>
