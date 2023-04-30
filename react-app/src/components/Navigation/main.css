@@ -10,7 +10,7 @@
     max-width: 100%;
     padding: 1em 0em 1em 1em;
     height: 8em;
-    font-family: Roboto,Arial,sans-serif;
+    font-family: Roboto, Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
     letter-spacing: .2px;
@@ -26,7 +26,7 @@
     flex-direction: column;
     max-width: 100%;
     height: 14em;
-    font-family: Roboto,Arial,sans-serif;
+    font-family: Roboto, Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
     letter-spacing: .2px;
@@ -45,4 +45,102 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+}
+
+#pfp {
+    display: flex;
+    align-items: flex-start;
+    height: 1.2em;
+    width: 1.2em;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#pfp:hover {
+    transition-duration: 500ms;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+#pfp img {
+    height: 100%;
+    width: 100%;
+}
+
+
+.nav-second {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+}
+
+
+.delete-assignment {
+    display: flex;
+    flex-direction: column;
+    width: 15em;
+    height: 6em;
+    gap: 1em;
+    padding: 1.5em;
+}
+
+.delete-assignment h4 {
+    margin: 0 0 0 0;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: .1px;
+    line-height: 24px;
+}
+
+.delete-assignment p {
+    margin: 0 0 0 0;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .2px;
+    line-height: 20px;
+    color: #5f6368;
+}
+
+#delete-assignment-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#cancel-delete {
+    border: none;
+    width: 5em;
+    color: #1a73e8;
+    background-color: #fff;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .25px;
+    line-height: 36px;
+    cursor: pointer;
+}
+
+#cancel-delete:hover {
+    transition-duration: 500ms;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+#delete-assignment {
+    border: none;
+    width: 5em;
+    background-color: #fff;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .25px;
+    line-height: 36px;
+    cursor: pointer;
+    color: #5f6368;
+}
+
+#delete-assignment:hover {
+    transition-duration: 500ms;
+    background-color: rgba(0, 0, 0, .1);
 }

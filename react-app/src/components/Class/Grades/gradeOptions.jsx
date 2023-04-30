@@ -15,6 +15,7 @@ export default function GradeOptions({submission}) {
         const url = files[0].url;
         const link = document.createElement('a');
         link.href = url;
+        link.target = "_blank"
         link.setAttribute('download', '');
         document.body.appendChild(link);
         link.click();

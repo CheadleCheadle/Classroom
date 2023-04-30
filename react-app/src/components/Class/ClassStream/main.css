@@ -73,11 +73,14 @@
 }
 
 .assignment-options-cont  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     background-color: #fff;
     transform-origin: left top;
-    width: 7.5em;
-    height: 9em;
+    width: 8em;
+    height: 5em;
     margin-left: 1em;
     margin-top: 11.3em;
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
@@ -241,6 +244,11 @@
     cursor: pointer;
 }
 
+#mark-done:hover {
+    background-color: #185abc;
+    transition-duration: 700ms;
+}
+
 .upload-work {
     display: flex;
     flex-direction: column;
@@ -319,6 +327,11 @@ input[type="file"] {
 
 #instructions-cont p {
     word-break:break-all;
+    letter-spacing: .01428em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.255rem;
+    color: #3c4043;
 }
 
 #announcement-cont {
