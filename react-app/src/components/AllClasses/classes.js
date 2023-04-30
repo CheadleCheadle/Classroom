@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getClassesTeacherThunk } from "../../store/classTeacher.js"
 import { getClassesStudentThunk } from "../../store/classStudent.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min.js";
 import { setClassId } from "../../store/classTeacher.js"
 import ClassOptions from "./classOptions.js";
 import { setClassIsLoaded } from "../../store/classTeacher.js";
-export default function Classes({isMainLoaded}) {
+import GetUser from "../utils/getUser.js";
+import { useTeacher } from "../Class/ClassStream/assignmentStream.js";
+export default function Classes() {
     const history = useHistory()
     const dispatch = useDispatch();
+    const user = GetUser()
     const [isLoaded, classes] = useClasses(true)
     const handleClick = (class_) => {
         dispatch(setClassId(class_.id))
@@ -18,6 +21,29 @@ export default function Classes({isMainLoaded}) {
         history.push(`/class/${class_.id}`);
     }
 
+
+    const HandleOpenGrade = ({classId}) => {
+        console.log("THE TEACH", classId);
+        const teacher = useTeacher(classId, true);
+        if (teacher.id === user.id) {
+            return(
+                <span id="open-grade-book">
+                    <div onClick={(e) => handleRedirect(e, classId)} id="arrow-cont">
+                        <FontAwesomeIcon icon={faArrowTrendUp} />
+                    </div>
+                </span>
+            )
+        } else {
+            return null;
+        }
+    }
+
+    const handleRedirect = (e, classId) => {
+        e.stopPropagation();
+        dispatch(setClassIsLoaded(true));
+        dispatch(setClassId(classId));
+        history.push(`/class/${classId}/grades`)
+    }
     return isLoaded && (
         <div className="cls-cont">
             {classes.map((class_) => (
@@ -32,7 +58,9 @@ export default function Classes({isMainLoaded}) {
                         </div>
                     </div>
                     <div className="cls-assignment-qk"> </div>
-                    <div className="cls-options"> </div>
+                    <div className="cls-options">
+                    <HandleOpenGrade classId={class_.id} />
+                    </div>
                 </div>
             ))}
         </div>

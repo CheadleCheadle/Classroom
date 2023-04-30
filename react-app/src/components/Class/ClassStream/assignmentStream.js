@@ -56,7 +56,7 @@ export default function AssignmentStream({ assignments, classId, announcements})
 
 }
 
-export function useTeacher(classId) {
+export function useTeacher(classId, isLoad) {
     const [isLoading, setIsLoading] = useState(false);
     const [teacher, setTeacher] = useState({});
     useEffect(() => {
@@ -71,5 +71,7 @@ export function useTeacher(classId) {
         }
         fetchTeacher();
     }, [])
-    return [isLoading, teacher];
+    if (isLoad) return teacher
+    else return [isLoading, teacher]
+
 }
