@@ -10,7 +10,7 @@
 
 #landing-txt {
     letter-spacing: .01785714em;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.25rem;
@@ -28,7 +28,7 @@
 #create-class {
     text-align: center;
     color: #1a73e8;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
     font-weight: 500;
     font-size: 14px;
     background-color: #fff;
@@ -42,7 +42,7 @@
     text-align: center;
     color: #fff;
     background-color: #1a73e8;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
     font-size: 14px;
     font-weight: 500;
     border-radius: 4px;
@@ -62,6 +62,10 @@
     border-radius: 5px;
     border-bottom: 0.0625rem solid #dadce0;
     cursor: pointer;
+}
+
+.cls-individual:hover {
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 2px 6px 2px rgba(60, 64, 67, .15);
 }
 
 .cls-cont {
@@ -88,6 +92,7 @@
     overflow: hidden;
     word-break: break-word;
 }
+
 #settings-icon {
     margin: 1em 1em 1em 1em;
     display: flex;
@@ -101,7 +106,7 @@
 }
 
 #settings-icon :hover {
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0, 0, 0, .1);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -110,11 +115,14 @@
     border-radius: 1.5rem;
     width: 1em;
     height: 1em;
+    transition-duration: 500ms;
 }
+
 .cls-name-section {
     margin: 1em 0em 1em 1em;
 }
-.cls-name-section h2  {
+
+.cls-name-section h2 {
     margin-top: 0em;
     margin-bottom: 0em;
 }
@@ -123,22 +131,29 @@
     margin-top: 0em;
     margin-bottom: 0em;
 }
+
 .cls-assignment-qk {
-    border-left:0.0625rem solid #dadce0;
-    border-right:0.0625rem solid #dadce0;
-   height: 50%;
+    border-left: 0.0625rem solid #dadce0;
+    border-right: 0.0625rem solid #dadce0;
+    height: 50%;
 }
+
 .cls-options {
-    border-top:0.0625rem solid #dadce0;
-    border-left:0.0625rem solid #dadce0;
-    border-right:0.0625rem solid #dadce0;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+    border-top: 0.0625rem solid #dadce0;
+    border-left: 0.0625rem solid #dadce0;
+    border-right: 0.0625rem solid #dadce0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     height: 20%;
-
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
+#open-grade-book {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1em;
+}
 .cls-options-cont {
     position: absolute;
     background-color: #fff;
@@ -153,5 +168,18 @@ border-bottom-right-radius: 5px;
     letter-spacing: .00625em;
     font-weight: 400;
     border-radius: 3px;
-    /* max-height: 242px; */
+}
+
+#arrow-cont {
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+#arrow-cont:hover {
+    transition-duration: 500ms;
+    background-color: rgba(0, 0, 0, .1);
 }
