@@ -24,7 +24,15 @@ export default function JoinClass() {
         <div className="join-class-cont">
         <div className="join-class-account">
             <p>You're currently signed in as</p>
-            <div>{user.first_name} {user.last_name}</div>
+            <div id="user-info-cont">
+            <img src={user.pfp}></img>
+            <div>
+
+            <div id="name-cont-join">{user.first_name} {user.last_name}</div>
+            <p id="email">{user.email}</p>
+
+            </div>
+            </div>
         </div>
             <div className="class-code-cont">
             <h2>Class code</h2>
@@ -38,15 +46,15 @@ export default function JoinClass() {
             maxLength="6"
             onChange={(e) => setCode(e.target.value)}
             ></input>
-            <button disabled={code.length < 6 ? true : false} onClick={() => handleJoin()}>Join</button>
             </div>
+            <button id="join-class-button" disabled={code.length < 6 ? true : false} onClick={() => handleJoin()}>Join</button>
             <p>{errors}</p>
             </div>
             <div>
-                <h2>To sign in with a class code</h2>
+                <h2 id="class-code-sign">To sign in with a class code</h2>
                 <ul>
-                    <li>Use an authorized account</li>
-                    <li>Use a class code with 6 digits only</li>
+                    <li id="steps">Use an authorized account</li>
+                    <li id="steps">Use a class code with 6 digits only</li>
                 </ul>
             </div>
         </div>
