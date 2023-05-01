@@ -7,7 +7,7 @@ Create Classes, Assignments, Announcements and more! Built using Python and Reac
 [User stories][user-stories]
 
 [live]:https://classroom-fr3x.onrender.com/
-[user-stores]:https://github.com/CheadleCheadle/Classroom/wiki/User-Stories
+[user-stories]:https://github.com/CheadleCheadle/Classroom/wiki/User-Stories
 
 ## Main Features
 
