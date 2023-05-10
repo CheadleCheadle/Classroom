@@ -12,18 +12,24 @@ Create Classes, Assignments, Announcements and more! Built using Python and Reac
 ## Main Features
 
 This Google Classroom clone allows for users to emulate all the tools of a classroom all in one place!
-Users can create classes and have their students join the class where they can then create assignments and announcements for the class.
+Users can create classes and have their students join where they can then create assignments and announcements as well as grade student submissions.
 Users who are students can view all their assignments and upload their completed work via file upload hosted with AWS.
 
-## Front End
-- Uses React.js
-- Implements Redux for state management.
-- Uses RESTful requests.
+## Technologies Used
+-  React.js
+-  Implements Redux for state management.
+-  RESTful convention.
+-  Flask
+-  SQLAlchemy
+-  AWS S3
+-  PostgreSQL
 
 ## To-do
 * Implement Update and Delete for announcements.
 * Allow for file upload when creating assignments and announcements.
+* Add a nice text editor for creating assignments.
 * Be able to invite students.
+* Add User customization. (user can update information)
 
 ## To launch the application locally:
 * Clone the repository
