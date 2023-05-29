@@ -38,5 +38,7 @@ Users who are students can view all their assignments and upload their completed
 * In the root folder, type "pipenv run flask run" to start the flask server on localhost:5000
 * Inside the 'react-app' folder type "npm start" to start the react frontend server on localhost:3000
 * The application should now be running!
-* ![classroom](https://user-images.githubusercontent.com/108553712/235412145-77914cbf-940a-4b41-8ea8-71acf10963cd.PNG)
+* ![classroom](https://user-images.githubusercontent.com/108553712/235412145-77914cbf-940a-4b41-8ea8-71acf10963cd.PNG)![classes](https://github.com/CheadleCheadle/Classroom/assets/108553712/9a494a4b-f5c8-4b26-aa30-9ca9fd69f762)
+![class_details](https://github.com/CheadleCheadle/Classroom/assets/108553712/3139df7d-a01a-4c05-97b9-d542e8a867c9)
+
 If you wish to stop using the application, you can close it by hitting ctrl + c inside of both the root and frontend folders.
