@@ -1,11 +1,11 @@
 .upcoming-work {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     border: 0.0625rem solid #dadce0;
     border-radius: .5rem;
-    gap: 1em;
     padding: 1em;
-    height: 5em;
+    height: 6em;
     width: 8em;
 }
 
@@ -72,4 +72,15 @@
     fill: #1a73e8;
     color: #1a73e8;
     margin: .5em 0 0 0;
+}
+
+#assignment-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+#assignment-title:hover  {
+    color: #1a73e8;
 }

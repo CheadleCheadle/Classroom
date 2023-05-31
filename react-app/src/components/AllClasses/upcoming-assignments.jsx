@@ -1,10 +1,6 @@
+import { useIsOwner } from "./classOptions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { useIsOwner } from "../../AllClasses/classOptions";
-
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import "./main.css";
-import UpcomingAssignments from "../../AllClasses/upcoming-assignments";
-export default function UpcomingWork({classId, assignments}) {
+export default function UpcomingAssignments({assignments, classId, useDate, numAssignments}) {
     const assignmentsArray = Object.values(assignments);
     const history = useHistory();
     const isOwner = useIsOwner(classId);
@@ -22,6 +18,14 @@ export default function UpcomingWork({classId, assignments}) {
         return b.due_date - a.due_date;
     }).slice(0, 2)
 
+    const handleDate = (date) => {
+        const dateObj = new Date(date);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = dateObj.toLocaleDateString(undefined, options);
+
+        return formattedDate;
+
+    }
     const HandleAssignmentRedirect = (assignment) => {
     if (isOwner) {
         history.push(`/classes/${classId}/assignments/${assignment.id}/teacher`)
@@ -29,20 +33,16 @@ export default function UpcomingWork({classId, assignments}) {
         history.push(`/classes/${classId}/assignments/${assignment.id}`)
     }
     }
-
-
     return (
-        <div className="upcoming-work">
-            <h2>Upcoming</h2>
-            {sortedAssignments?.length ?  sortedAssignments.map((assignment) => (
-                <p onClick={() => HandleAssignmentRedirect(assignment)} id="assignment-title">{assignment.title}</p>
-            ))
-             :
-            <p>No work due soon</p>
-            }
-            <span id="nav-to-all">
-            <Link id="nav-to-all" to={`/class/${classId}/classwork`}>View All</Link>
-            </span>
+        <div id="assignment-class-cont">
+        {sortedAssignments.map((assignment) => (
+            <div id="assignment-details-all-classes-cont" onClick={() => HandleAssignmentRedirect(assignment)}>
+            { useDate && <p id="due-date">Due {handleDate(assignment.due_date)}</p>}
+            <p id="assignment-details-all-classes">{assignment.title}</p>
+            </div>
+        ))}
         </div>
     )
+
+
 }

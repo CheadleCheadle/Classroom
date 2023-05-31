@@ -15,9 +15,7 @@ export default function NewAssignment({edit}) {
     const [topic, setTopic] = useState('');
     const { classId, assignmentId } = useParams()
     console.log("Here are the classId and assignment Id", classId, assignmentId)
-    // const class_ = useSelector(state => state.teacher.classes[state.teacher.singleClassId]);
     const assignment = useSelector(state => state.teacher.classes[classId].assignments[assignmentId]);
-    // const assignment = GetAssignment(classId, assignmentId)
     console.log("Im the assignment", assignment)
     const handleSubmit = (e) => {
         e.preventDefault();

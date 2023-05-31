@@ -5,13 +5,25 @@ import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTeacher } from "./assignmentStream";
 import { useSelector } from "react-redux";
-
+import Loading from "../../Loading/loading";
+import { useEffect } from "react";
+import { setClassId, setClassIsLoaded } from "../../../store/classTeacher";
+import { useDispatch } from "react-redux";
 export default function TeacherAssignment() {
     const { classId, assignmentId} = useParams();
     const assignment = GetAssignment(classId, assignmentId)
-    console.log("This is the assignment nums", assignment)
+    const dispatch = useDispatch();
     const class_ = useSelector(state => state.teacher.classes[classId]);
     const [isLoading, teacher] = useTeacher(classId);
+    useEffect(() => {
+        dispatch(setClassIsLoaded(true))
+        dispatch(setClassId(classId));
+    }, [])
+    if (!isLoading) {
+        return (
+            <Loading />
+        )
+    }
     return (
         <div className="assignment-page-cont">
             <div className="assignment-work-info-cont">

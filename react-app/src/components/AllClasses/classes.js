@@ -10,6 +10,8 @@ import ClassOptions from "./classOptions.js";
 import { setClassIsLoaded } from "../../store/classTeacher.js";
 import GetUser from "../utils/getUser.js";
 import { useTeacher } from "../Class/ClassStream/assignmentStream.js";
+import Loading from "../Loading/loading.jsx";
+import UpcomingAssignments from "./upcoming-assignments.jsx";
 export default function Classes() {
     const history = useHistory()
     const dispatch = useDispatch();
@@ -44,11 +46,17 @@ export default function Classes() {
         dispatch(setClassId(classId));
         history.push(`/class/${classId}/grades`)
     }
+
+    if (!isLoaded) {
+        return (
+            <Loading />
+        )
+    }
     return isLoaded && (
         <div className="cls-cont">
             {classes.map((class_) => (
-                <div onClick={() => handleClick(class_)} key={class_.id} className="cls-individual">
-                    <div style={{backgroundImage: `url("${class_.image}")`}}className="cls-banner-cont">
+                <div key={class_.id} className="cls-individual">
+                    <div onClick={() => handleClick(class_)} style={{backgroundImage: `url("${class_.image}")`}}className="cls-banner-cont">
                         <div className="cls-info">
                             <div className="cls-name-section">
                             <h2>{class_.name}</h2>
@@ -57,7 +65,9 @@ export default function Classes() {
                             <ClassOptions class_={class_} />
                         </div>
                     </div>
-                    <div className="cls-assignment-qk"> </div>
+                    <div className="cls-assignment-qk">
+                        <UpcomingAssignments useDate={true} classId={class_.id} assignments={class_.assignments}/>
+                    </div>
                     <div className="cls-options">
                     <HandleOpenGrade classId={class_.id} />
                     </div>

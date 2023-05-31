@@ -39,7 +39,7 @@
     letter-spacing: .25px;
     font-weight: 500;
     font-size: 14px;
-    cursor: pointer;
+    cursor: not-allowed;
 
 }
 .edit-cls h4 {

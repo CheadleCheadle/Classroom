@@ -9,7 +9,7 @@ export default function Banner({ class_ }) {
 
         <div className="banner-cont" style={{backgroundImage: `url("${class_.image}")`}}>
             <div className="banner-sect-1">
-                <div onClick={() => handleClick()} className="edit-cls">
+                <div className="edit-cls">
                     <FontAwesomeIcon icon={faPencil} />
                     <h4>Customize</h4>
                 </div>
