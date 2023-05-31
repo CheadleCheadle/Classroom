@@ -10,6 +10,8 @@ import { newSubmissionThunk } from "../../../store/submissions";
 import "./main.css";
 import { FindSubmission } from "../Grades";
 import GetUser from "../../utils/getUser";
+import Loading from "../../Loading/loading";
+import { setClassId, setClassIsLoaded } from "../../../store/classTeacher";
 export default function AssignmentPage() {
     const dispatch = useDispatch();
     const { classId, assignmentId } = useParams();
@@ -23,16 +25,6 @@ export default function AssignmentPage() {
     const [theFiles, setTheFiles] = useState([]);
     const [submission, setTheSubmission] = useState({});
 
-    // So if the assignment already has some submissions we try to find ours.
-    // If we do, we set the current submission to our submission
-
-    // if (Object.values(assignment.submissions).length) {
-    //  const tempSub= FindSubmission(assignment, user.id);
-    //  setTheSubmission(tempSub);
-    // }
-
-    // On load if the assignment has submissions and the submission
-    // has files, we set the current files with the submissions files.
     useEffect(() => {
         if (Object.values(assignment?.submissions).length) {
             const tempSub = FindSubmission(assignment, user.id);
@@ -44,6 +36,8 @@ export default function AssignmentPage() {
             }
         }
         }
+        dispatch(setClassIsLoaded(true))
+        dispatch(setClassId(classId));
     }, [])
 
     const handleFileChange = (e) => {
@@ -78,6 +72,12 @@ export default function AssignmentPage() {
                 return null;
             }
 
+    }
+
+    if (!isLoading) {
+        return (
+            <Loading />
+        )
     }
 
     return (

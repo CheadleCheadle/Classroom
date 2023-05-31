@@ -10,14 +10,36 @@ def seed_users():
             pfp="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
     marnie = User(
         username='marnie', email='marnie@aa.io', password='password', first_name="Marnie",
-        last_name="junior", pfp="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
+        last_name="Junior", pfp="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
     bobbie = User(
         username='bobbie', email='bobbie@aa.io', password='password', first_name="Bobbie", last_name="lewis",
         pfp="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
+    grant = User(
+        username='Grant', email='grant@aa.io', password='password', first_name="Grant", last_name="Cheadle",
+        pfp="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
+    sarah = User(
+        username='Sarah', email='sarah@aa.io', password='password', first_name="Sarah", last_name="Walker",
+        pfp="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
+
+    Lawrence= User(
+        username='Lawer', email='lawer@aa.io', password='password', first_name="Lawerence", last_name="Johnson",
+        pfp="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
+
+    ashley= User(
+        username='ashley', email='ashley@aa.io', password='password', first_name="Ashley", last_name="Lallum",
+        pfp="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png")
+
+
+
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(grant)
+    db.session.add(sarah)
+    db.session.add(Lawrence)
+    db.session.add(ashley)
+
     db.session.commit()
 
 

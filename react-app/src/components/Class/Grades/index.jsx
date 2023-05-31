@@ -9,6 +9,7 @@ import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { newGradeThunk } from "../../../store/classTeacher";
 import GradeOptions from "./gradeOptions";
+import Loading from "../../Loading/loading";
 
 export default function Grades() {
     const { classId } = useParams();
@@ -21,8 +22,11 @@ export default function Grades() {
     if (isLoading && teacher.id === user.id && assignments.length) {
         //remove user with id of teacher from users
         const filteredUsers = users.filter(user => user.id !== teacher.id);
-
-    console.log("Here are the assignments", assignments);
+    if (!isLoading) {
+        return (
+            <Loading />
+        )
+    }
     return (
         <div className="grid-cont">
             <>
@@ -71,7 +75,7 @@ export default function Grades() {
 
     )
 
-} else {
+} else  {
     return (
         <div id="no-assignments">
             <span>This is where you will view and grade assignment submissions</span>

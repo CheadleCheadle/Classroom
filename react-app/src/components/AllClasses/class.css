@@ -205,3 +205,38 @@
     transition-duration: 500ms;
     background-color: rgba(0, 0, 0, .1);
 }
+
+#due-date {
+    letter-spacing: .01428571em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: #5f6368;
+    margin: 0em;
+}
+
+#assignment-details-all-classes {
+    letter-spacing: .01785714em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: #3c4043;
+    margin: 0em;
+}
+
+#assignment-details-all-classes-cont {
+    cursor: pointer;
+    padding: .15em;
+}
+#assignment-details-all-classes-cont:hover {
+    background-color: rgba(180, 209, 247, .2);
+}
+
+#assignment-class-cont {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    padding: .5em;
+}

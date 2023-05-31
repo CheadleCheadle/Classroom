@@ -9,6 +9,7 @@ import GetUser from "../utils/getUser";
 import AssignmentStream, { useTeacher } from "./ClassStream/assignmentStream";
 import ClassCode from "./ClassCode&Upcoming";
 import AnnouncementStream from "./ClassStream/announcementStream";
+import Loading from "../Loading/loading";
 export default function ClassPage() {
     const user = GetUser();
     const { classId } = useParams()
@@ -31,6 +32,11 @@ export default function ClassPage() {
             )
         }
     }
+    if (!isLoading) {
+        return (
+            <Loading />
+        )
+    }
     return ( isLoading &&
         <div className="cls-details-cont">
         <div className="cls-detail-pg">
@@ -39,7 +45,7 @@ export default function ClassPage() {
         <div className="cls-details">
             <div id="code-work">
                 {teacher.id === user.id ? <ClassCode class_={class_}/> : null}
-                <UpcomingWork classId={classId}/>
+                <UpcomingWork classId={classId} assignments={class_.assignments} useDate={false}/>
             </div>
             <div className="announcements-cont">
             { teacher.id === user.id ? <NewAnnouncement classId={classId} user={user}/>: null}

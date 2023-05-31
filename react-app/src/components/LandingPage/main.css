@@ -66,6 +66,7 @@
     align-items: center;
 }
 
+
 .landing-sect-2 {
     display: flex;
     flex-direction: row;
@@ -272,4 +273,38 @@
     bottom: 0;
     width: 5em;
     position: fixed;
+}
+
+@media (max-width: 1620px) {
+    .landing-sect-2 {
+        margin: 5em 5em;
+    }
+}
+
+@media (max-width: 1145px) {
+    .landing-sect-2 {
+        margin: 5em 1em;
+    }
+
+    .landing-sect-1 {
+        margin: 5em 5em;
+    }
+}
+
+@media (max-width: 1110px ) {
+    .landing-sect-2 {
+        margin: 5em 1em;
+    }
+
+    .landing-sect-1 h1 {
+        font-size: 40px;
+    }
+}
+
+
+@media (max-width: 1110px ) {
+    .landing-sect-2 {
+        margin: 5em 0em;
+    }
+
 }
