@@ -121,7 +121,7 @@ function AboutMe() {
             <div onClick={(e) => openMenu(e)} id="question">
                 <FontAwesomeIcon id="question-mark" icon={faCircleQuestion} style={{color: "#5f6368", backgroundColor: "#fff"}} />
             </div>
-            <div id="users">
+            <div onClick={() => history.push('/about')}id="users">
                 <FontAwesomeIcon icon={faUsers} />
             </div>
 

@@ -17,6 +17,7 @@ import AssignmentPage from "./components/Class/ClassStream/assignment";
 import Grades from "./components/Class/Grades";
 import TeacherAssignment from "./components/Class/ClassStream/teacherAssignment";
 import LandingPage from "./components/LandingPage";
+import AboutMe from "./components/LandingPage/AboutMe";
 function App() {
   const user = GetUser();
   const dispatch = useDispatch();
@@ -46,6 +47,10 @@ function App() {
           <Switch>
           {!!user && <Route exact path="/classes">
             <AllClasses isMainLoaded={isLoaded} />
+          </Route>
+          }
+          {<Route exact path="/about">
+            <AboutMe />
           </Route>
           }
           {!!user && <Route exact path="/class/:classId">
