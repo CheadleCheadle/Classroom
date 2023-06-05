@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faUsers} from "@fortawesome/free-solid-svg-icons";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { useState } from "react";
@@ -120,6 +120,9 @@ function AboutMe() {
         <>
             <div onClick={(e) => openMenu(e)} id="question">
                 <FontAwesomeIcon id="question-mark" icon={faCircleQuestion} style={{color: "#5f6368", backgroundColor: "#fff"}} />
+            </div>
+            <div onClick={() => history.push('/about')}id="users">
+                <FontAwesomeIcon icon={faUsers} />
             </div>
 
             {isVisible &&
