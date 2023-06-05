@@ -249,6 +249,31 @@
     cursor: pointer;
 }
 
+#users {
+    left: 5px;
+    bottom: 40px;
+    width: 2.2em;
+    height: 2.2em;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#users:hover {
+    .fa-users {
+    transition-duration: .22s;
+    color: #185abc;
+    }
+}
+
+
+.fa-users {
+   color:  #1a73e8;
+}
+
 #question:hover {
     transition-duration: 700ms;
     background-color: rgba(60,64,67,0.2);
